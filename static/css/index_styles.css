@@ -44,6 +44,7 @@ body {
 .header1 h2 a {
   display: block;
   padding-top: 1px;
+  padding-left: 80px;
   font-size: 32px;
   font-weight: 600;
   text-decoration: none;
@@ -143,8 +144,6 @@ nav ul li.contact-button {
   margin-left: 20px;
 }
 
-
-
 /* Social Bar Stuff */
 .socialMenu {
   position: fixed;
@@ -194,5 +193,89 @@ nav ul li.contact-button {
 
 .socialMenu a:hover::after {
   display: block;
+}
+
+
+/* Combo Menu Stuff */
+.comboMenu {
+  position: absolute;
+  top: 10;
+  left: 10;
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-icon:before,
+.menu-icon:after {
+  content: '';
+  display: block;
+  background-color: #000;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon:before {
+  top: 0;
+}
+
+.menu-icon:after {
+  bottom: 0;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: flex;
+  top: 85%;
+  left: 25;
+  background-color: #f5dcac;
+  width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.menu li {
+  padding: 15px;
+}
+
+.menu a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked~.menu {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+input[type="checkbox"]:checked~.menu-icon:before {
+  transform: translateY(12px) rotate(45deg);
+
+}
+
+input[type="checkbox"]:checked~.menu-icon:after {
+  transform: translateY(-12px) rotate(-45deg);
+}
+
+/* Hide the nav menu and social menu by default */
+nav.navMenu,
+div.socialMenu {
+  display: none;
 }
 
