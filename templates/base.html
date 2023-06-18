@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <title class="title">Welcome to Test gon Git ya</title>
@@ -11,29 +10,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-	<header class="header1">
-		<h2><a href="/home">Dauhson's Portfolio</a></h2>
-	</header>
-	<nav class="navMenu">
+    <header class="header1">
+        <h2><a href="/home">Dauhson's Portfolio</a></h2>
+    </header>
+    <nav class="navMenu">
 		<ul>
 			{% for item in mainMenu_items %}
-			<li>{{ item }}</li>
+				<li{% if item.class %} class="{{ item.class }}"{% endif %}><a href="{{ item.url }}">{{ item.name }}</a></li>
 			{% endfor %}
-			<li><button class="contact-button">Contact</button></li>
 		</ul>
 	</nav>
+	
 	<div class="socialMenu">
 		<ul>
-			{% for item in socialMenu_items %}
-				<li><a href="{{ item.link }}">{{ item.name }}</a></li>
+			{% for link in socialMenu_items %}
+			<li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank"><i class="{{ link.icon }}"></i></a></li>
 			{% endfor %}
 		</ul>
 	</div>
 		
-	
-<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
-
-
