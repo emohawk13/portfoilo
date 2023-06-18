@@ -2,4 +2,6 @@ static/env
 __pycache__
 instance
 static/vendor
-
+config.py
+keygen.py
+connections.py
