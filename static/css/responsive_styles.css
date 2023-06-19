@@ -6,13 +6,13 @@
     div.socialMenu {
         display: none;
     }
-  
+
     /* Show the combo menu */
     .comboMenu {
         display: inline-block;
         right: 0;
     }
-  
+
     /* Other styles for smaller screens */
     .image {
         opacity: 0.5;
@@ -27,12 +27,12 @@
     div.socialMenu {
         display: block;
     }
-  
+
     /* Hide the combo menu */
     .comboMenu {
         display: none;
     }
-  
+
     /* Other styles for larger screens */
     .content,
     .social {
@@ -42,13 +42,14 @@
         transform: translateY(-50%);
         padding-bottom: 400px;
     }
-    
+
     /* Adjust other styles for larger screens */
     .column {
         width: 50%;
     }
-  
+
     .image {
         opacity: 1;
     }
 }
+
