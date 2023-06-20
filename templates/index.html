@@ -1,4 +1,11 @@
+<!-- page.html -->
 {% extends 'base.html' %}
-{% block content %}
-	<div></div>
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index_styles.css') }}">
 {% endblock %}
+
+{% block content %}
+<div>Hi I'm Dauhson, and I'm a Full Stack Developer</div>
+{% endblock %}
+
