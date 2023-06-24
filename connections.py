@@ -24,7 +24,7 @@ def get_links():
 
 
 def get_social_menu_items():
-    query = "SELECT LinkName, LinkActual, linkIcon FROM Links WHERE LinkRelation = 'Social'"
+    query = "SELECT linkName, linkActual, linkIcon FROM links WHERE linkRelation = 'Social'"
     try:
         conn = pymysql.connect(
             host=config.MYSQL_HOST,
