@@ -1,3 +1,4 @@
+# app.py
 import pymysql
 import config
 import logging
@@ -47,3 +48,4 @@ def submit_contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

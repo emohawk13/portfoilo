@@ -25,7 +25,7 @@
                 </ul>
                 <ul>
                     {% for link in socialMenu_items %}
-                        <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank"><i class="{{ link.icon }}"></i>   -   {{ link.name }}</a></li>
+                        <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank">{{ link.icon|safe }} - {{ link.name }}</a></li>
                     {% endfor %}
                 </ul>
             </ul>
@@ -40,7 +40,7 @@
         <div class="socialMenu">
             <ul>
                 {% for link in socialMenu_items %}
-                    <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank"><i class="{{ link.icon }}"></i></a></li>
+                    <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank">{{ link.icon|safe }} - {{ link.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>

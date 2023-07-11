@@ -19,9 +19,12 @@ def execute_query(query):
 
 
 def get_links():
-    query = "SELECT * FROM Links"
+    query = "SELECT * FROM links"
     return execute_query(query)
 
+
+import pymysql
+import logging
 
 def get_social_menu_items():
     query = "SELECT linkName, linkActual, linkIcon FROM links WHERE linkRelation = 'Social'"
@@ -43,14 +46,21 @@ def get_social_menu_items():
 
         social_menu_items = []
         for row in results:
-            social_menu_items.append(
-                {'name': row['LinkName'], 'link': row['LinkActual'], 'icon': row['linkIcon']})
+            name = row['linkName']
+            link = row['linkActual']
+            icon = row['linkIcon']
+            social_menu_items.append({'name': name, 'link': link, 'icon': icon})
+        
+        # Print the names in the terminal
+        for item in social_menu_items:
+            print("Name:", item['name'])
+
         return social_menu_items
 
     except Exception as e:
-        logging.error(
-            f"An error occurred while fetching social menu items: {str(e)}")
+        logging.error(f"An error occurred while fetching social menu items: {str(e)}")
         return []
+
 
 
 def connect_db(app):
