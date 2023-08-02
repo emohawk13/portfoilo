@@ -19,7 +19,7 @@ def execute_query(query):
 
 
 def get_links():
-    query = "SELECT * FROM links"
+    query = "SELECT * FROM Links"
     return execute_query(query)
 
 
@@ -147,3 +147,11 @@ def get_contact_form_fields():
     except Exception as e:
         logging.error(f"An error occurred while fetching contact form fields: {str(e)}")
         return []
+
+
+SECRET_KEY = '648b858b3f3aec238f7e7c26eb824e487b52cefd8279369e'
+MYSQL_HOST = '72.13.211.176'  # Replace with your MySQL host
+MYSQL_PORT = 3306  # Replace with your MySQL port
+MYSQL_USER = 'emohawk13'
+MYSQL_PASSWORD = 'Dcap1203+'
+MYSQL_DB = 'port'
