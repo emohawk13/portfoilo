@@ -4,4 +4,3 @@ instance
 static/vendor
 config.py
 keygen.py
-connections.py
