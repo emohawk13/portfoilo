@@ -1,6 +1,8 @@
 static/env
+static/images
 __pycache__
 instance
 static/vendor
 config.py
 keygen.py
+workspace.txt

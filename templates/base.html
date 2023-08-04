@@ -1,80 +1,100 @@
 <html lang="en">
+
 <head>
     <title class="title">Welcome to Dauhson's Portfolio</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive_styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,400;0,700;0,900;1,100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,400;0,700;0,900;1,100&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <header class="header1">
-        <h2><a href="/home">Dauhson's Portfolio</a></h2>
-        <div class="comboMenu">
-            <input type="checkbox" id="menuToggle">
-            <label for="menuToggle" class="menu-icon">
-            </label>
-            <ul class="menu">
-                <ul>
-                    {% for item in mainMenu_items %}
-                        <li{% if item.class %} class="{{ item.class }}"{% endif %}><a href="{{ item.url }}">{{ item.name }}</a></li>
-                    {% endfor %}
-                </ul>
-                <ul>
-                    {% for link in socialMenu_items %}
-                        <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank">{{ link.icon|safe }} - {{ link.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </ul>
-        </div>
-        <nav class="navMenu">
+<header>
+    <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
+    <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
+    <h2 class="title"><a>Dauhson's Portfolio</a></h2>
+</header>
+
+<div class="wrapper">
+    <div class="comboMenu" id="navbar">
+        <input type="checkbox" id="menuToggle">
+        <label for="menuToggle" class="menu-icon">
+        </label>
+        <ul class="menu">
             <ul>
                 {% for item in mainMenu_items %}
-                    <li{% if item.class %} class="{{ item.class }}"{% endif %}><a href="{{ item.url }}">{{ item.name }}</a></li>
+                <li {% if item.class %} class="{{ item.class }}" {% endif %}><a href="{{ item.url }}">{{ item.name
+                        }}</a>
+                </li>
                 {% endfor %}
             </ul>
-        </nav>
-        <div class="socialMenu">
             <ul>
                 {% for link in socialMenu_items %}
-                    <li><a href="{{ link.link }}" data-name="{{ link.name }}" target="_blank">{{ link.icon|safe }} - {{ link.name }}</a></li>
+                <li><a href="{{ link.link }}" target="_blank">{{ link.icon|safe }}</a></li>
                 {% endfor %}
             </ul>
-        </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-    <!-- Modal -->
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/submit_contact" method="POST">
-                        {% for field in contact_form_fields %}
-                        <div class="form-group">
-                            <label for="{{ field.name }}">{{ field.label }}</label>
-                            <input type="text" class="form-control" id="{{ field.name }}" name="{{ field.name }}"
-                                placeholder="Enter {{ field.label }}">
-                        </div>
-                        {% endfor %}
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+        </ul>
+    </div>
+    <nav class="navMenu" id="navbar">
+        <ul>
+            {% for item in mainMenu_items %}
+            <li {% if item.class %} class="{{ item.class }}" {% endif %}><a href="{{ item.url }}">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <div class="socialMenu" id="navbar">
+        <ul>
+            {% for link in socialMenu_items %}
+            <li><a href="{{ link.link }}" target="_blank">{{ link.icon|safe }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <body>
+
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/submit_contact" method="POST">
+                            {% for field in contact_form_fields %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                <input type="text" class="form-control" id="{{ field.name }}" name="{{ field.name }}"
+                                    placeholder="Enter {{ field.label }}">
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</div>
+
 </html>

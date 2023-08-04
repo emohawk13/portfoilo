@@ -4,7 +4,6 @@ import logging
 from flask import current_app
 from config import *
 
-
 def execute_query(query):
     try:
         conn = current_app.mysql.connection
@@ -69,7 +68,7 @@ def get_contact_form_fields():
     field_labels = {
         'firstName': 'First Name: ',
         'lastName': 'Last Name: ',
-        'contactEmail': 'Your Email Please: ',
+        'contactEmail': 'Email: ',
         'tellMeAboutYou': 'Tell me about yourself: '
     }
     query = "SHOW COLUMNS FROM ContactMe"
@@ -101,12 +100,30 @@ def get_contact_form_fields():
         logging.error(f"An error occurred while fetching contact form fields: {str(e)}")
         return []
 
-def get_links():
+
+def insert_contact(first_name, last_name, email, about):
     query = "SELECT * FROM Links"
-    return execute_query(query)
+    try:
+        conn = pymysql.connect(
+            host=config.MYSQL_HOST,
+            port=config.MYSQL_PORT,
+            user=config.MYSQL_USER,
+            password=config.MYSQL_PASSWORD,
+            db=config.MYSQL_DB,
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        cur = conn.cursor()
+        cur.execute(query, (first_name, last_name, email, about))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logging.error(f"An error occurred while inserting contact: {str(e)}")
+
 
 def get_social_menu_items():
-    query = "SELECT linkName, linkActual, linkIcon FROM links WHERE linkRelation = 'Social'"
+    query = "SELECT linkName, linkActual, linkIcon FROM Links WHERE linkRelation = 'Social'"
     try:
         conn = pymysql.connect(
             host=config.MYSQL_HOST,
@@ -139,3 +156,10 @@ def get_social_menu_items():
     except Exception as e:
         logging.error(f"An error occurred while fetching social menu items: {str(e)}")
         return []
+  
+def get_links():
+    query = "SELECT * FROM Links"
+    return execute_query(query)
+    
+#def get_course_data():
+#    query = ""

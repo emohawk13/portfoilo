@@ -17,6 +17,11 @@
     .image {
         opacity: 0.5;
     }
+    .title a{
+        font-size: 2rem;
+        color: white;
+        text-shadow: 0 0 5px black;
+      }
 }
 
 /* Show the nav menu and social menu for larger screens */
