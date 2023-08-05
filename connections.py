@@ -146,11 +146,6 @@ def get_social_menu_items():
             link = row['linkActual']
             icon = row['linkIcon']
             social_menu_items.append({'name': name, 'link': link, 'icon': icon})
-        
-        # Print the names in the terminal
-        for item in social_menu_items:
-            print("Name:", item['name'])
-
         return social_menu_items
 
     except Exception as e:
