@@ -5,15 +5,20 @@ $(document).ready(function () {
   });
 });
 
-// JavaScript for the navbar visibility on scroll
-window.addEventListener("scroll", function() {
-  var navbar = document.getElementById("navbar");
-  var parallaxContainer = document.querySelector(".parallax-container");
-  var parallaxContainerHeight = parallaxContainer.offsetHeight;
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.getElementById("mainWrapper");
+    const navMenu = document.querySelector(".navMenu");
 
-  if (window.pageYOffset > parallaxContainerHeight) {
-      navbar.classList.add("visible");
-  } else {
-      navbar.classList.remove("visible");
-  }
-});
+    // Add scroll event listener to the wrapper
+    wrapper.addEventListener("scroll", function () {
+      // Adjust the scrollOffset value according to when you want to show the navbar
+      const scrollOffset = 400;
+
+      if (wrapper.scrollTop > scrollOffset) {
+        navMenu.classList.remove("hidden-navbar");
+      } else {
+        navMenu.classList.add("hidden-navbar");
+      }
+    });
+  });
+

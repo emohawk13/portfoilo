@@ -63,7 +63,7 @@ header{
 }
 
 section{
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 4rem;
   background-color: #333;
   color:white;
@@ -202,7 +202,6 @@ nav ul li.contact-button {
   top: 50%;
   left: calc(100% + 50px);
   transform: translate(-50%, -50%);
-  background-color: #000;
   color: #fff;
   padding: 15px 10px;
   border-radius: 4px;
@@ -348,15 +347,3 @@ div.socialMenu {
   cursor: pointer;
 }
 
-.navbar.visible {
-  top: 0;
-  transition: top 0.5s ease;
-}
-.navbar {
-  position: fixed;
-  top: -100px; /* Start off the screen */
-  left: 0;
-  right: 0;
-  height: 100px;
-  /* Add other styles like background color, height, etc. */
-}

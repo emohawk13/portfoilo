@@ -16,13 +16,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<header>
-    <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
-    <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
-    <h2 class="title"><a>Dauhson's Portfolio</a></h2>
-</header>
-
-<div class="wrapper">
+<div class="wrapper" id="mainWrapper">
     <div class="comboMenu" id="navbar">
         <input type="checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">
@@ -57,6 +51,11 @@
             {% endfor %}
         </ul>
     </div>
+    <header>
+        <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
+        <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
+        <h2 class="title"><a>Dauhson's Portfolio</a></h2>
+    </header>
     <body>
 
         <section>
