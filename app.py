@@ -56,21 +56,21 @@ def contact_submitted():
 @app.route('/projects', methods=['GET', 'POST'])
 def projects():
     in_project_items = in_project()
-    in_project_menu = in_project_items['project_items']
+    mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
     contact_form_fields = in_project_items['contact_form_fields']
-    return render_template('projects.html', in_project_menu=in_project_menu, socialMenu_items=socialMenu_items, 
+    return render_template('projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
                            comboMenu=comboMenu, contact_form_fields=contact_form_fields)
 
 @app.route('/edu', methods=['GET', 'POST'])
 def edu():
     edu_menu = in_edu()
-    in_edu_menu = edu_menu['in_edu_items']
+    mainMenu_items = edu_menu['in_edu_items']
     socialMenu_items = edu_menu['social_menu_items']
     comboMenu = edu_menu['comboMenu']
     contact_form_fields = edu_menu['contact_form_fields']
-    return render_template('edu.html', in_edu_menu=in_edu_menu, socialMenu_items=socialMenu_items, 
+    return render_template('edu.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
                            comboMenu=comboMenu, contact_form_fields=contact_form_fields)
 
 @app.route('/projectBlog', methods=['GET', 'POST'])
@@ -86,21 +86,21 @@ def projectBlog():
 @app.route('/eduProjects', methods=['GET', 'POST'])
 def eduProjects():
     in_project_items = in_project()
-    in_project_menu = in_project_items['project_items']
+    mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
     contact_form_fields = in_project_items['contact_form_fields']
-    return render_template('eduProjects.html', in_project_menu=in_project_menu, socialMenu_items=socialMenu_items, 
+    return render_template('eduProjects.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
                            comboMenu=comboMenu, contact_form_fields=contact_form_fields)
     
 @app.route('/personalProjects', methods=['GET', 'POST'])
 def personalProjects():
     in_project_items = in_project()
-    in_project_menu = in_project_items['project_items']
+    mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
     contact_form_fields = in_project_items['contact_form_fields']
-    return render_template('personalProjects.html', in_project_menu=in_project_menu, socialMenu_items=socialMenu_items, 
+    return render_template('personalProjects.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
                            comboMenu=comboMenu, contact_form_fields=contact_form_fields)
 
 

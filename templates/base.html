@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive_styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<header>
     <div class="comboMenu" id="navbar">
         <input type="checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">
@@ -38,11 +39,10 @@
             </ul>
         </ul>
     </div>
-    <nav class="navMenu" id="navbar">
+    <nav class="navMenu">
         <ul>
             {% for item in mainMenu_items %}
-            <li {% if item.class %} class="{{ item.class }}" {% endif %}><a href="{{ item.url }}">{{ item.name }}</a>
-            </li>
+            <li><a href="{{ item.toRoute }}">{{ item.name }}</a></li>
             {% endfor %}
         </ul>
     </nav>
@@ -58,7 +58,9 @@
             {% block content %}{% endblock %}
         </div>
     </section>
+</header>
 
+<body>
     <!-- Modal -->
     <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
         aria-hidden="true">
