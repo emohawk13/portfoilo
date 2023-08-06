@@ -1,9 +1,10 @@
 # app.py
 import pymysql
-import config
+import connections.config as config
 import logging
 from flask import Flask, redirect, url_for, render_template, request
 from connections.connections import connect_db, get_social_menu_items, get_contact_form_fields, insert_contact
+from connections.projectConnection import connect_db, get_social_menu_items, get_contact_form_fields, insert_contact
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
