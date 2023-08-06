@@ -3,7 +3,7 @@ import pymysql
 import config
 import logging
 from flask import Flask, redirect, url_for, render_template, request
-from connections import connect_db, get_social_menu_items, get_contact_form_fields, insert_contact
+from connections.connections import connect_db, get_social_menu_items, get_contact_form_fields, insert_contact
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
