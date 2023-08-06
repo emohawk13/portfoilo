@@ -26,7 +26,7 @@
         <ul class="menu">
             <ul>
                 {% for item in mainMenu_items %}
-                <li {% if item.class %} class="{{ item.class }}" {% endif %}><a href="{{ item.url }}">{{ item.name
+                <li {% if item.class %} class="url" {% endif %}><a href="{{ item.url }}">{{ item.name
                         }}</a>
                 </li>
                 {% endfor %}
