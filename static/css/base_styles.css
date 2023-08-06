@@ -1,20 +1,19 @@
 /* General Styles */
 * {
-  font-family: 'Caveat', cursive;
   font-family: 'Roboto', sans-serif;
+
 }
 
-section{
-  font-size: 2rem;
-  padding: 4rem;
-  background-color: #333;
-  color:white;
+body {
+  margin: 0;
+  background-color: #006400;
+  /* Dark green color in hexadecimal */
 }
 
-.main-width {
-  width: 1400px;
-  max-width: 95%;
-  margin: 0 auto;
+h1 {
+  font-size: 5rem;
+  color: white;
+  text-shadow: 0 0 5px black;
 }
 
 /* Upper Nav Bar Stuff */
@@ -294,4 +293,3 @@ div.socialMenu {
   font-weight: bold;
   cursor: pointer;
 }
-

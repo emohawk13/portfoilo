@@ -8,3 +8,5 @@ projectConnection.py
 .vscode
 config.py
 venv/
+dbconfig.py
+testing.py
