@@ -3,6 +3,8 @@ static/images
 __pycache__
 static/vendor
 workspace.txt
-connections/
+connections.py
+projectConnection.py
 .vscode
 config.py
+venv/
