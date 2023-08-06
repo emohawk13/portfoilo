@@ -1,38 +1,130 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}About Dauhson{% endblock %}
-{% block content %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index_styles.css') }}">
-<div class="wrapper" id="mainWrapper">
+<head>
+  <title class="title">Welcome to Dauhson's Portfolio</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index_styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive_styles.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,400;0,700;0,900;1,100&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="wrapper">
     <header>
-        <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
-        <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
-        <h2 class="title"><a>Dauhson's Portfolio</a></h2>
+      <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
+      <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
+      <h2 class="title"><a href="/">Dauhson's Portfolio</a></h2>
     </header>
-    <body>
-      <section>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam iusto animi unde cupiditate facilis nostrum ab minus
-          reiciendis dolor repudiandae explicabo voluptatem obcaecati, excepturi magnam at vero nihil itaque assumenda aperiam
-          ut temporibus dignissimos libero iste debitis? Sint, ratione totam necessitatibus nostrum quos eveniet impedit porro
-          eaque vel optio suscipit animi exercitationem corporis architecto ea expedita similique dignissimos, neque odit
-          provident ducimus delectus nemo amet! Dolores odit accusamus aspernatur veniam recusandae deleniti laudantium adipisci
-          maiores, nemo, suscipit assumenda deserunt porro possimus quae voluptate sapiente itaque dolorem ipsum! Modi eos non
-          quis obcaecati quisquam quos dolores, ea consectetur ipsam eveniet reprehenderit aspernatur ex labore, nulla deleniti,
-          ullam id maxime ipsa. Sequi est nam dolorem in iure a quaerat consequatur delectus assumenda adipisci nostrum dicta,
-          temporibus esse quos tenetur nemo sed provident consectetur, accusantium quia maxime optio iusto perferendis. Mollitia
-          itaque corporis, architecto magnam hic velit ipsa dolorum. Voluptates, beatae ullam labore eum ipsa necessitatibus
-          explicabo! Nam ipsa a libero recusandae voluptas magnam vel nostrum adipisci similique impedit, facere enim.
-          Architecto consequatur distinctio, amet quam hic omnis incidunt accusantium repellendus sequi delectus facere
-          assumenda consequuntur suscipit ab maiores asperiores esse iusto id voluptatibus quisquam similique in soluta! Omnis
-          architecto voluptate expedita vel laudantium quam dolore provident? Natus asperiores laborum ratione recusandae
-          nostrum numquam perspiciatis quidem omnis excepturi nobis tempora quia, blanditiis eaque expedita quis necessitatibus,
-          maxime eum rem iste alias, est debitis voluptatem ullam? Animi dicta labore porro delectus tenetur consequatur quidem,
-          obcaecati vel, impedit facilis possimus alias natus, beatae consectetur omnis! Mollitia, a. Aperiam voluptatibus et
-          aliquam non officia delectus laudantium quod. Nihil, repudiandae? Dolore neque ut officia vero impedit eveniet maxime
-          ad, optio sapiente corrupti praesentium rerum veniam autem delectus amet laboriosam mollitia eligendi reprehenderit,
-          incidunt recusandae fugit provident obcaecati quo. Fugiat soluta molestias autem quidem labore, est aperiam rerum.
-        </div>
+
+    <nav class="navMenu">
+      <ul>
+        {% for item in mainMenu_items %}
+        <li {% if item.class %} class="{{ item.class }}" {% endif %}><a href="{{ item.url }}">{{ item.name }}</a>
+        </li>
+        {% endfor %}
+        <li class="contact-button"><a href="#" data-toggle="modal" data-target="#contactModal">Contact Me</a></li>
+      </ul>
+    </nav>
+
+    <div class="socialMenu">
+      <ul>
+        {% for link in socialMenu_items %}
+        <li><a href="{{ link.link }}" target="_blank" data-name="{{ link.name }}">{{ link.icon|safe }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <section>
+      <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam iusto animi unde cupiditate facilis
+        nostrum ab
+        minus reiciendis dolor repudiandae explicabo voluptatem obcaecati, excepturi magnam at vero nihil
+        itaque assumenda
+        aperiam ut temporibus dignissimos libero iste debitis? Sint, ratione totam necessitatibus nostrum quos
+        eveniet impedit
+        porro eaque vel optio suscipit animi exercitationem corporis architecto ea expedita similique
+        dignissimos, neque
+        odit provident ducimus delectus nemo amet! Dolores odit accusamus aspernatur veniam recusandae
+        deleniti laudantium
+        adipisci maiores, nemo, suscipit assumenda deserunt porro possimus quae voluptate sapiente itaque
+        dolorem ipsum! Modi eos
+        non quis obcaecati quisquam quos dolores, ea consectetur ipsam eveniet reprehenderit aspernatur ex
+        labore, nulla deleniti,
+        ullam id maxime ipsa. Sequi est nam dolorem in iure a quaerat consequatur delectus assumenda adipisci
+        nostrum
+        dicta, temporibus esse quos tenetur nemo sed provident consectetur, accusantium quia maxime optio iusto
+        perferendis.
+        Mollitia itaque corporis, architecto magnam hic velit ipsa dolorum. Voluptates, beatae ullam labore eum
+        ipsa
+        necessitatibus explicabo! Nam ipsa a libero recusandae voluptas magnam vel nostrum adipisci similique
+        impedit, facere enim.
+        Architecto consequatur distinctio, amet quam hic omnis incidunt accusantium repellendus sequi delectus
+        facere
+        assumenda consequuntur suscipit ab maiores asperiores esse iusto id voluptatibus quisquam similique in
+        soluta!
+        Omnis architecto voluptate expedita vel laudantium quam dolore provident? Natus asperiores laborum
+        ratione
+        recusandae nostrum numquam perspiciatis quidem omnis excepturi nobis tempora quia, blanditiis eaque
+        expedita quis
+        necessitatibus, maxime eum rem iste alias, est debitis voluptatem ullam? Animi dicta labore porro
+        delectus tenetur consequatur
+        quidem, obcaecati vel, impedit facilis possimus alias natus, beatae consectetur omnis! Mollitia, a.
+        Aperiam
+        voluptatibus
+        et
+        aliquam non officia delectus laudantium quod. Nihil, repudiandae? Dolore neque ut officia vero impedit
+        eveniet
+        maxime
+        ad, optio sapiente corrupti praesentium rerum veniam autem delectus amet laboriosam mollitia eligendi
+        reprehenderit,
+        incidunt recusandae fugit provident obcaecati quo. Fugiat soluta molestias autem quidem labore, est
+        aperiam
+        rerum.
+      </div>
     </section>
-    </body>
-    {% endblock %}
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/contact_submitted" method="POST">
+            {% for field in contact_form_fields %}
+            <div class="form-group">
+              <label for="{{ field.name }}">{{ field.label }}</label>
+              <input type="text" class="form-control" id="{{ field.name }}" name="{{ field.name }}"
+                placeholder="Enter {{ field.label }}">
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</div>
+
+</html>
