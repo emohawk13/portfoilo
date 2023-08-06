@@ -1,9 +1,8 @@
 static/env
 static/images
 __pycache__
-instance
 static/vendor
 workspace.txt
 connections/
-vscode
+.vscode
 config.py
