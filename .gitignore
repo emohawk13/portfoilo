@@ -6,3 +6,4 @@ static/vendor
 config.py
 keygen.py
 workspace.txt
+connections.py
