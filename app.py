@@ -1,7 +1,7 @@
 # app.py
 import config as config
 from flask import Flask, render_template, request
-from connections import main_menu, in_edu, in_project, insert_contact
+from connections import main_menu, in_edu, in_project, in_edu_project, in_personal_project, insert_contact
 #from projectConnection import get_personal_project_items
 
 app = Flask(__name__)
@@ -85,7 +85,7 @@ def projectBlog():
 
 @app.route('/eduProjects', methods=['GET', 'POST'])
 def eduProjects():
-    in_project_items = in_project()
+    in_project_items = in_edu_project()
     mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
@@ -95,7 +95,7 @@ def eduProjects():
     
 @app.route('/personalProjects', methods=['GET', 'POST'])
 def personalProjects():
-    in_project_items = in_project()
+    in_project_items = in_personal_project()
     mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
