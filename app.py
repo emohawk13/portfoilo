@@ -1,7 +1,8 @@
 # app.py
 import config as config
+from flask import jsonify
 from flask import Flask, render_template, request
-from connections import main_menu, in_edu, in_project, in_edu_project, in_personal_project, insert_contact
+from connections import main_menu, in_edu, in_project, in_edu_project, in_personal_project, insert_contact 
 #from projectConnection import get_personal_project_items
 
 app = Flask(__name__)
@@ -46,7 +47,7 @@ def contact_submitted():
     about = request.form.get('tellMeAboutYou')
     
     try:
-        insert_contact(first_name, last_name, email, about)
+        insert_contact(first_name, last_name, email, about, True)
     except:
         return "There was an error submitting your data, please try again.", 500
 

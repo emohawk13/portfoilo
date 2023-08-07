@@ -42,7 +42,14 @@
     <nav class="navMenu">
         <ul>
             {% for item in mainMenu_items %}
-            <li><a href="{{ item.toRoute }}">{{ item.name }}</a></li>
+            <li>
+                <a href="{{ item.url }}" 
+                    {% if item.class %}class="{{ item.class }}" {% endif %} {% if item.data_toggle
+                    %}data-toggle="{{ item.data_toggle }}" {% endif %} {% if item.data_target
+                    %}data-target="{{ item.data_target }}" {% endif %}>
+                    {{ item.name }}
+                </a>
+            </li>
             {% endfor %}
         </ul>
     </nav>
@@ -55,7 +62,9 @@
     </div>
     <section>
         <div>
-            {% block content %}{% endblock %}
+            {% block content %}
+            
+            {% endblock %}
         </div>
     </section>
 </header>
