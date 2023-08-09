@@ -20,46 +20,37 @@
 </head>
 
 <header>
-    <div class="comboMenu" id="navbar">
-        <input type="checkbox" id="menuToggle">
-        <label for="menuToggle" class="menu-icon">
-        </label>
-        <ul class="menu">
-            <ul>
-                {% for item in mainMenu_items %}
-                <li {% if item.class %} class="url" {% endif %}><a href="{{ item.url }}">{{ item.name
-                        }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <ul>
-                {% for link in socialMenu_items %}
-                <li><a href="{{ link.link }}" target="_blank">{{ link.icon|safe }}</a></li>
-                {% endfor %}
-            </ul>
-        </ul>
-    </div>
-    <nav class="navMenu">
-        <ul>
+    <nav class="nav">
+        <div class="side-menu-tab" id="sideMenuTab">
+          <div class="tab-content">
+            <div class="tab-icon">&#9776;</div>
+          </div>
+        </div>
+        <div class="side-menu" id="sideMenu">
+          <ul>
             {% for item in mainMenu_items %}
-            <li>
-                <a href="{{ item.url }}" 
-                    {% if item.class %}class="{{ item.class }}" {% endif %} {% if item.data_toggle
-                    %}data-toggle="{{ item.data_toggle }}" {% endif %} {% if item.data_target
-                    %}data-target="{{ item.data_target }}" {% endif %}>
-                    {{ item.name }}
-                </a>
+            <li class="navMenu">
+              <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
             </li>
             {% endfor %}
-        </ul>
-    </nav>
-    <div class="socialMenu" id="navbar">
-        <ul>
+  
             {% for link in socialMenu_items %}
-            <li><a href="{{ link.link }}" target="_blank">{{ link.icon|safe }}</a></li>
+            <li>
+              <a href="{{ link.link }}" target="_blank" data-name="{{ link.name }}"
+                style="display: flex; align-items: center;">
+                <span style="margin-right: 1px;">{{ link.icon|safe }} </span>
+                <span>{{ link.name }}</span>
+              </a>
+            </li>
             {% endfor %}
-        </ul>
-    </div>
+            <li class="btn">
+              <button type="button" class="contact-button" id="contactButton">Let's Connect!</button>
+            </li>
+            <li class="btn">
+              <button type="button" class="contact-button" id="testButton">Let's Test!</button>
+            </li>
+          </ul>
+      </nav>
     <section>
         <div>
             {% block content %}
@@ -100,7 +91,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    
 </body>
 </div>
 

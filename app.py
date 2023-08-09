@@ -2,7 +2,7 @@
 import config as config
 from flask import jsonify
 from flask import Flask, render_template, request
-from connections import main_menu, in_edu, in_project, in_edu_project, in_personal_project, insert_contact 
+from connections import main_menu, in_edu, in_project, in_edu_project, in_personal_project, insert_contact, get_personal_project_items
 #from projectConnection import get_personal_project_items
 
 app = Flask(__name__)
@@ -96,14 +96,44 @@ def eduProjects():
     
 @app.route('/personalProjects', methods=['GET', 'POST'])
 def personalProjects():
-    in_project_items = in_personal_project()
+    message = "personal projects page,"
+    if request.method == 'POST':
+        message = request.form.get('message')
+        
+    in_project_items = in_edu_project()
+    project_items = get_personal_project_items()
     mainMenu_items = in_project_items['project_items']
     socialMenu_items = in_project_items['social_menu_items']
     comboMenu = in_project_items['comboMenu']
     contact_form_fields = in_project_items['contact_form_fields']
-    return render_template('personalProjects.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
+    
+    projects = project_items
+    
+    return render_template('personalProjects.html', message=message, projects=projects, 
+                           mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                           comboMenu=comboMenu, contact_form_fields=contact_form_fields)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    message = "personal projects page,"
+    if request.method == 'POST':
+        message = request.form.get('message')
+        
+    in_project_items = in_edu_project()
+    project_items = get_personal_project_items()
+    mainMenu_items = in_project_items['project_items']
+    socialMenu_items = in_project_items['social_menu_items']
+    comboMenu = in_project_items['comboMenu']
+    contact_form_fields = in_project_items['contact_form_fields']
+    
+    projects = project_items
+    
+    return render_template('test.html', message=message, projects=projects, 
+                           mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                            comboMenu=comboMenu, contact_form_fields=contact_form_fields)
 
 
-if __name__ == '__main__':    app.run(debug=True)
+    
+if __name__ == '__main__':
+    app.run(debug=True)
 

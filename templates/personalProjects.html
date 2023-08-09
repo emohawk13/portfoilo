@@ -1,15 +1,20 @@
 <!-- page.html -->
 {% extends 'base.html' %}
 
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive_styles.css') }}">
-{% endblock %}
 
 {% block content %}
-<div>Personal Projects</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/matrix_styles.css') }}">
+<body>
+    <div id="matrix-container"></div>
+    {% for project in projects %}
+    <div>
+        <h1 class="title container" id="contentContainer">Personal Projects</h1>
+        <div class="content container" id="contentContainer">
+            <div class="subTitle">{{ project.subTitle }}</div>
+            <div class="subTContent">{{ project.projectDisc }}</div>
+        </div>
+    </div>
+    {% endfor %}
+    <script src="{{ url_for('static', filename='js/matrix.js') }}"></script>
+</body>
 {% endblock %}

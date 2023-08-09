@@ -8,3 +8,4 @@ projectConnection.py
 .vscode
 config.py
 venv/
+templates/test.html
