@@ -5,57 +5,96 @@
 
 body, html {
   margin: 0;
-  padding: 0;
   height: 100%;
-  overflow-y: auto; /* Allow the body to scroll */
+  overflow: hidden;
+  overflow-y: auto;
 }
 
-/* Header Stuff */
-body .wrapper header .title {
-  font-size: 5rem;
-  color: white;
-  text-shadow: 0 0 5px black;
-  z-index: 3; /* Adjusted z-index */
-}
-
-.wrapper {
-  width: 100vw;
-  overflow-x: hidden;
-  perspective: 1000px;
-}
-
-header {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  transform-style: preserve-3d;
+.parallax-section {
+  height: 100vh; /* 100% of the viewport height */
+  width: 100vw; /* 100% of the viewport width */
+  position: relative; /* To position the title and foreground relative to this section */
+  overflow: hidden; /* To ensure nothing spills out of the section */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .background {
-  transform: translateZ(-10px) scale(2);
-  z-index: 1; /* Adjusted z-index */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* 100% of the viewport width */
+  height: 100vh; /* 100% of the viewport height */
+  object-fit: cover;
+  z-index: -1; /* This ensures the background is behind content */
 }
 
 .foreground {
-  transform: translateZ(-5px) scale(1.5);
-  z-index: 2; /* Adjusted z-index */
-}
-
-.background, .foreground {
-  position: absolute;
-  top: 0;
+  position: absolute; /* To position it at the bottom of .parallax-section */
+  bottom: 0;         /* Positions the image at the bottom of the container */
   left: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  width: 100%;       /* Full width of the container */
+  height: 65vh;      /* 65% of the viewport height */
+  z-index: 1;
+  
+}
+/*
+.content-section {
+  font-size: 1.5rem;
+  padding: 1rem;
+  width: 90%; /* Adjusted width 
+  margin-left: auto; /* Added margin-left auto 
+  margin-right: auto; /* Added margin-right auto 
+  background-color: #333;
+  color: white;
+  z-index: 4; /* Adjusted z-index 
+}
+*/
+h2.title{
+  font-size: 5rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  position: absolute; /* Making the title absolute to the parallax section */
+  top: 40%; 
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering the title */
+  z-index: -1; /* Adjusting z-index to be higher than the foreground */
 }
 
-section {
+.content-section a {
+  margin: auto;
+  font-size: 1rem;
+}
+
+.content-section {
   font-size: 1.5rem;
-  padding: 5rem;
+  padding: 1rem;
+  width: 90%; /* Adjusted width */
+  margin-left: auto; /* Added margin-left auto */
+  margin-right: auto; /* Added margin-right auto */
   background-color: #333;
   color: white;
   z-index: 4; /* Adjusted z-index */
+  position: relative; /* Set to relative to position the pseudo-element */
+}
+
+.content-section::before, .content-section::after {
+  content: "";
+  display: block;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5%; /* half of the remaining 10% width (since width of .content-section is 90%) */
+  z-index: -1; /* So that it's behind the actual content */
+}
+
+.content-section::before {
+  left: -5%; /* Positioning to the left of the content-section */
+}
+
+.content-section::after {
+  right: -5%; /* Positioning to the right of the content-section */
 }

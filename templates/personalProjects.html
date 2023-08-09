@@ -1,6 +1,11 @@
 <!-- page.html -->
-{% extends 'base.html' %}
+{% extends 'void.html' %}
 
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/matrix_styles.css') }}">
+{% endblock %}
+
+{% block title %}Personal Projects{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/matrix_styles.css') }}">
@@ -17,4 +22,10 @@
     {% endfor %}
     <script src="{{ url_for('static', filename='js/matrix.js') }}"></script>
 </body>
+<div id="lorem-text"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
 {% endblock %}

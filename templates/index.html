@@ -16,18 +16,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
-<header>
-  <div class="wrapper" id="mainWrapper">
-    <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
-    <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
-    <h2 class="title">Dauhson's Portfolio</h2>
-  </div>
-</header>
 
 <body>
+  <div class="parallax-section">
+    <img src="{{ url_for('static', filename='images/RockyM.jpg') }}" class="background">
+    <img src="{{ url_for('static', filename='images/Trees.png') }}" class="foreground">
+    <div>
+      <h2 class="title">Dauhson's Portfolio</h2>
+    </div>
+  </div>
   <nav class="side-menu-tab" id="sideMenuTab">
     <div>
       <div class="tab-icon">&#9776;</div>
@@ -39,7 +37,6 @@
           <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
         </li>
         {% endfor %}
-
         {% for link in socialMenu_items %}
         <li>
           <a href="{{ link.link }}" target="_blank" data-name="{{ link.name }}"
@@ -56,54 +53,55 @@
         </li>
       </ul>
   </nav>
-  <section>
+  <section class="content-section">
     <div>
       <h1>About Me</h1>
     </div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam iusto animi unde cupiditate facilis
-    nostrum ab
-    minus reiciendis dolor repudiandae explicabo voluptatem obcaecati, excepturi magnam at vero nihil
-    itaque assumenda
-    aperiam ut temporibus dignissimos libero iste debitis? Sint, ratione totam necessitatibus nostrum quos
-    eveniet impedit
-    porro eaque vel optio suscipit animi exercitationem corporis architecto ea expedita similique
-    dignissimos, neque
-    odit provident ducimus delectus nemo amet! Dolores odit accusamus aspernatur veniam recusandae
-    deleniti laudantium
-    adipisci maiores, nemo, suscipit assumenda deserunt porro possimus quae voluptate sapiente itaque
-    dolorem ipsum! Modi eos
-    non quis obcaecati quisquam quos dolores, ea consectetur ipsam eveniet reprehenderit aspernatur ex
-    labore, nulla deleniti,
-    ullam id maxime ipsa. Sequi est nam dolorem in iure a quaerat consequatur delectus assumenda adipisci
-    nostrum
-    dicta, temporibus esse quos tenetur nemo sed provident consectetur, accusantium quia maxime optio iusto
-    perferendis.
-    Mollitia itaque corporis, architecto magnam hic velit ipsa dolorum. Voluptates, beatae ullam labore eum
-    ipsa
-    necessitatibus explicabo! Nam ipsa a libero recusandae voluptas magnam vel nostrum adipisci similique
-    impedit, facere enim.
-    Architecto consequatur distinctio, amet quam hic omnis incidunt accusantium repellendus sequi delectus
-    facere
-    assumenda consequuntur suscipit ab maiores asperiores esse iusto id voluptatibus quisquam similique in
-    soluta!
-    Omnis architecto voluptate expedita vel laudantium quam dolore provident? Natus asperiores laborum
-    ratione
-    recusandae nostrum numquam perspiciatis quidem omnis excepturi nobis tempora quia, blanditiis eaque
-    expedita quis
-    necessitatibus, maxime eum rem iste alias, est debitis voluptatem ullam? Animi dicta labore porro
-    delectus tenetur consequatur
-    quidem, obcaecati vel, impedit facilis possimus alias natus, beatae consectetur omnis! Mollitia, a.
-    Aperiam
-    voluptatibus
-    et
-    aliquam non officia delectus laudantium quod. Nihil, repudiandae? Dolore neque ut officia vero impedit
-    eveniet
-    maxime
-    ad, optio sapiente corrupti praesentium rerum veniam autem delectus amet laboriosam mollitia eligendi
-    reprehenderit,
-    incidunt recusandae fugit provident obcaecati quo. Fugiat soluta molestias autem quidem labore, est
-    aperiam
-    rerum.
+    <div><a>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam iusto animi unde cupiditate facilis
+        nostrum ab
+        minus reiciendis dolor repudiandae explicabo voluptatem obcaecati, excepturi magnam at vero nihil
+        itaque assumenda
+        aperiam ut temporibus dignissimos libero iste debitis? Sint, ratione totam necessitatibus nostrum quos
+        eveniet impedit
+        porro eaque vel optio suscipit animi exercitationem corporis architecto ea expedita similique
+        dignissimos, neque
+        odit provident ducimus delectus nemo amet! Dolores odit accusamus aspernatur veniam recusandae
+        deleniti laudantium
+        adipisci maiores, nemo, suscipit assumenda deserunt porro possimus quae voluptate sapiente itaque
+        dolorem ipsum! Modi eos
+        non quis obcaecati quisquam quos dolores, ea consectetur ipsam eveniet reprehenderit aspernatur ex
+        labore, nulla deleniti,
+        ullam id maxime ipsa. Sequi est nam dolorem in iure a quaerat consequatur delectus assumenda adipisci
+        nostrum
+        dicta, temporibus esse quos tenetur nemo sed provident consectetur, accusantium quia maxime optio iusto
+        perferendis.
+        Mollitia itaque corporis, architecto magnam hic velit ipsa dolorum. Voluptates, beatae ullam labore eum
+        ipsa
+        necessitatibus explicabo! Nam ipsa a libero recusandae voluptas magnam vel nostrum adipisci similique
+        impedit, facere enim.
+        Architecto consequatur distinctio, amet quam hic omnis incidunt accusantium repellendus sequi delectus
+        facere
+        assumenda consequuntur suscipit ab maiores asperiores esse iusto id voluptatibus quisquam similique in
+        soluta!
+        Omnis architecto voluptate expedita vel laudantium quam dolore provident? Natus asperiores laborum
+        ratione
+        recusandae nostrum numquam perspiciatis quidem omnis excepturi nobis tempora quia, blanditiis eaque
+        expedita quis
+        necessitatibus, maxime eum rem iste alias, est debitis voluptatem ullam? Animi dicta labore porro
+        delectus tenetur consequatur
+        quidem, obcaecati vel, impedit facilis possimus alias natus, beatae consectetur omnis! Mollitia, a.
+        Aperiam
+        voluptatibus
+        et
+        aliquam non officia delectus laudantium quod. Nihil, repudiandae? Dolore neque ut officia vero impedit
+        eveniet
+        maxime
+        ad, optio sapiente corrupti praesentium rerum veniam autem delectus amet laboriosam mollitia eligendi
+        reprehenderit,
+        incidunt recusandae fugit provident obcaecati quo. Fugiat soluta molestias autem quidem labore, est
+        aperiam
+        rerum.</a></div>
     </div>
   </section>
 
@@ -137,6 +135,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>
