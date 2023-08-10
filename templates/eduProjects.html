@@ -1,15 +1,30 @@
 {% extends 'base.html' %}
 
 {% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edu_styles.css') }}">
 {% endblock %}
 
-{% block title %}Edu Projects{% endblock %}
+{% block title %}Education Projects{% endblock %}
 
 {% block content %}
-<div id="lorem-text"></div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% for eduItems in eduItems %}
+
+<div class="container" id="contentContainer">
+    <div class="subTitle">{{ eduItems.subTitle }}</div>
+    <div class="subTContent">{{ eduItems.projectDisc }}</div>
+</div>
+
+{% endfor %}
+
+<div class="container" id="content-container">
+    <div class="subTitle">Tester Project</div>
+    <div class="subTContent" id="lorem-text"></div>
+</div>
+</div>
 <script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
+
+{% endblock %}
+
+{% block scripts %}
 {% endblock %}

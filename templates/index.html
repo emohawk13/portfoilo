@@ -34,7 +34,7 @@
       <ul>
         {% for item in mainMenu_items %}
         <li>
-          <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
+          <a href="{{ url_for(item.route)}}">{{ item.routeName }}</a>
         </li>
         {% endfor %}
         {% for link in socialMenu_items %}
@@ -43,6 +43,7 @@
             style="display: flex; align-items: center;">
             <span style="margin-right: 1px;">{{ link.icon|safe }} &nbsp; {{ link.name }}</span>
           </a>
+
         </li>
         {% endfor %}
         <li class="btn">

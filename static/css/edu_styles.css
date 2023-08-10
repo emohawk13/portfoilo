@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    background-color: #111;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    position: relative;
+}
+
+
+@keyframes animateMatrixCharacter {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+}
+
+.container {
+    text-align: center;
+    padding: 1rem;
+    width: 90%;
+    height: 10%;
+    background-color: #333;
+    box-shadow: 0px 0px 12px rgba(0, 255, 0, 0.6);
+    z-index: 1;
+    margin-top: 50px;  /* NEW */
+    margin-left: auto; 
+    margin-right: auto;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+.container::before, .container::after {
+    content: "";
+    display: block;
+    background-color: #333;
+    width: 5%;
+    z-index: -1;
+}
+
+.container::before {
+    left: -5%;
+}
+
+.container::after {
+    right: -5%;
+}
+
+.title, .subTitle, .subTContent {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.title {
+    align-items: center;
+    font-size: 64px;
+}
+
+.subTitle {
+    font-size: 42px;
+}
+
+.subTContent {
+    font-size: 18px;
+}
