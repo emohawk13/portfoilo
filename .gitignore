@@ -2,10 +2,11 @@ static/env
 static/images
 static/vendor
 venv/
+.vscode/
 
 __pycache__
-.vscode
 
 workspace.txt
 projectConnection.py
 config.py
+test.py
