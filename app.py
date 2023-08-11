@@ -1,103 +1,121 @@
-from flask import Flask, render_template, request
-import config
-from connections import (
-    main_menu,
-    in_edu,
-    in_project,
-    in_edu_project,
-    in_personal_project,
-    insert_contact,
-    get_personal_project_items,
-    get_edu_project_items,
-    get_courseData,
-)
+import config as config
+from flask import jsonify, Flask, render_template, request
+from connections import get_data, push_contact
 
 app = Flask(__name__)
-app.config.from_pyfile("config.py")
+app.config.from_pyfile('config.py')
 
-
-def render_page(template_name, menu_function, **kwargs):
-    menu_data = menu_function()
-    mainMenu_items = menu_data.get("main_menu_items", [])
-    socialMenu_items = menu_data.get("social_menu_items", [])
-    comboMenu = menu_data.get("comboMenu", [])
-    contact_form_fields = menu_data.get("contact_form_fields", [])
-
-    return render_template(
-        template_name,
-        mainMenu_items=mainMenu_items,
-        socialMenu_items=socialMenu_items,
-        comboMenu=comboMenu,
-        contact_form_fields=contact_form_fields,
-        **kwargs
-    )
-
-
-
-@app.route("/")
-@app.route("/goHome")
+@app.route('/')
 def home():
-    return render_page("index.html", main_menu)
+    data = get_data()
+    mainMenu_items = data['main']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
 
-@app.route("/contact_submitted", methods=["POST"])
+    return render_template('index.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+
+@app.route('/goHome')
+def goHome():
+    return home()
+
+@app.route('/contact_submitted', methods=['POST'])
 def contact_submitted():
-    first_name = request.form.get("firstName")
-    last_name = request.form.get("lastName")
-    email = request.form.get("contactEmail")
-    about = request.form.get("tellMeAboutYou")
+    data = get_data()
+    mainMenu_items = data['main']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    
+    first_name = request.form.get('firstName')
+    last_name = request.form.get('lastName')
+    email = request.form.get('contactEmail')
+    about = request.form.get('tellMeAboutYou')
 
     try:
-        insert_contact(first_name, last_name, email, about, True)
+        push_contact(first_name, last_name, email, about, True)
     except:
         return "There was an error submitting your data, please try again.", 500
 
-    return render_page("contact.html", main_menu)
+    return render_template('contact.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                          contact_form_fields=contact_form_fields)
 
-@app.route("/projects")
+@app.route('/projects', methods=['GET', 'POST'])
 def projects():
-    return render_page("projects.html", main_menu, in_project)
+    data = get_data()
+    mainMenu_items = data['in_project']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
 
-@app.route("/edu")
-def edu():
-    return render_page("edu.html", main_menu, in_edu)
+    return render_template('projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields)
 
-@app.route("/projectBlog")
+@app.route('/projectBlog', methods=['GET', 'POST'])
 def projectBlog():
-    return render_page("projectBlog.html", main_menu)
+    data = get_data()
+    mainMenu_items = data['main']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    comboMenu = data['main']['comboMenu']
+    contact_form_fields = data['main']['contact_form_fields']
 
-@app.route("/eduProjects")
-def eduProjects():
-    course_data = get_courseData()
-    edu_items = get_edu_project_items()
-    return render_page(
-        "eduProjects.html", main_menu, in_edu_project, courseData=course_data, eduItems=edu_items
-    )
+    return render_template('projectBlog.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                           comboMenu=comboMenu, contact_form_fields=contact_form_fields)
 
-@app.route("/takenCourses")
-def takenCourses():
-    course_data = get_courseData()
-    edu_items = get_edu_project_items()
-    return render_page(
-        "takenCourses.html",main_menu, in_edu_project, courseData=course_data, eduItems=edu_items
-    )
-
-@app.route("/personalProjects", methods=["GET", "POST"])
+@app.route('/personalProjects', methods=['GET', 'POST'])
 def personalProjects():
-    message = "personal projects page,"
-    if request.method == "POST":
-        message = request.form.get("message")
-    projects = get_personal_project_items()
-    return render_page(
-        "personalProjects.html", main_menu, in_edu_project, message=message, projects=projects
-    )
+    data = get_data()
+    mainMenu_items = data['main']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    project_data = data['in_personal_project']['personal_project']
+    
+    return render_template('personalProjects.html', project_data=project_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
 
-@app.route("/test", methods=["GET", "POST"])
+@app.route('/eduProjects', methods=['GET', 'POST'])
+def eduProjects():
+    data = get_data()
+    mainMenu_items = data['edu']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    courseData = data['in_edu_project']['edu_project']
+    
+    return render_template('eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+
+@app.route('/edu', methods=['GET', 'POST'])
+def edu():
+    data = get_data()
+    mainMenu_items = data['edu']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+
+    return render_template('edu.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields)
+
+@app.route('/takenCourses', methods=['GET', 'POST'])
+def takenCourses():
+    data = get_data()
+    mainMenu_items = data['edu']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    courseData = data['in_edu_project']['edu_project']
+    
+    return render_template('eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+ 
+@app.route('/test', methods=['GET', 'POST'])
 def test():
-    message = "personal projects page,"
-    if request.method == "POST":
-        message = request.form.get("message")
-    projects = get_personal_project_items()
-    return render_page("test.html", main_menu, in_edu_project, message=message, projects=projects)
-
-if __name__ == "__main__":
+    data = get_data()
+    mainMenu_items = data['main']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']   
+    course_data = data['in_personal_project']['personal_project']
+    
+    return render_template('test.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+    
+if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+    

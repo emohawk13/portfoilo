@@ -8,14 +8,13 @@
 
 {% block content %}
 
-{% for eduItems in eduItems %}
-
-<div class="container" id="contentContainer">
-    <div class="subTitle">{{ eduItems.subTitle }}</div>
-    <div class="subTContent">{{ eduItems.projectDisc }}</div>
-</div>
-
+{% for course in courseData %}
+    <div class="container" id="contentContainer">
+        <div class="subTitle">{{ course.projectName }}</div>
+        <div class="subTContent">{{ course.projectDisc }}</div>
+    </div>
 {% endfor %}
+
 
 <div class="container" id="content-container">
     <div class="subTitle">Tester Project</div>

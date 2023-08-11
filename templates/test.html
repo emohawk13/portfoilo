@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Connected Lines Matrix Animation</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/matrix_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/testing.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +14,27 @@
 </head>
 
 <body>
-    <div id="matrix-container"></div>
-    {% for project in projects %}
-    <div>
-        <h1 class="title container" id="contentContainer">Personal Projects</h1>
-        <div class="content container" id="contentContainer">
-            <div class="subTitle">{{ project.subTitle }}</div>
-            <div class="subTContent">{{ project.projectDisc }}</div>
-        </div>
-    </div>
-    {% endfor %}
+    <div>{{ data }}</div>
+    <div><a>next</a></div>
+    <div>{{ mainMenu_items }}</div>
+    <div><a>next</a></div>
+    <div>{{ socialMenu_items }}</div>
+    <div><a>next</a></div>
+
+    <div>{{ course_data }}</div>
+    <div><a>next</a></div>
+    <div>{{ courseData }}</div>
+    <div><a>next</a></div>
+
+    <div>{{ contact_form_fields }}</div>
+    <div><a>end</a></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ url_for('static', filename='js/matrix.js') }}"></script>
 <script src="{{ url_for('static', filename='js/testing.js') }}"></script>
 
 </html>
+
+<!--
+course_data = data['course_data']['menu_items']
+courseData = data['in_edu']['course_class_type','course_progress']
+-->
