@@ -54,11 +54,10 @@ def projectBlog():
     data = get_data()
     mainMenu_items = data['main']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
-    comboMenu = data['main']['comboMenu']
     contact_form_fields = data['main']['contact_form_fields']
 
     return render_template('projectBlog.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
-                           comboMenu=comboMenu, contact_form_fields=contact_form_fields)
+                           contact_form_fields=contact_form_fields)
 
 @app.route('/personalProjects', methods=['GET', 'POST'])
 def personalProjects():
@@ -98,9 +97,9 @@ def takenCourses():
     mainMenu_items = data['edu']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
-    courseData = data['in_edu_project']['edu_project']
+    courseData = data['in_edu_project']['course_data']
     
-    return render_template('eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
  
 @app.route('/test', methods=['GET', 'POST'])
