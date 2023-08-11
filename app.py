@@ -88,7 +88,7 @@ def edu():
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
 
-    return render_template('edu.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
+    return render_template('childTemplates/edu.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
                             contact_form_fields=contact_form_fields)
 
 @app.route('/takenCourses', methods=['GET', 'POST'])
@@ -102,7 +102,7 @@ def takenCourses():
     return render_template('takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
  
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('//test', methods=['GET', 'POST'])
 def test():
     data = get_data()
     mainMenu_items = data['main']['menu_items']
