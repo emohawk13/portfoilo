@@ -36,7 +36,7 @@ def contact_submitted():
     except:
         return "There was an error submitting your data, please try again.", 500
 
-    return render_template('contact.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+    return render_template('childTemplates/contact.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
                           contact_form_fields=contact_form_fields)
 
 @app.route('/projects', methods=['GET', 'POST'])
@@ -46,7 +46,7 @@ def projects():
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
 
-    return render_template('projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+    return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
                             contact_form_fields=contact_form_fields)
 
 @app.route('/projectBlog', methods=['GET', 'POST'])
@@ -56,7 +56,7 @@ def projectBlog():
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
 
-    return render_template('projectBlog.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/projectBlog.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                            contact_form_fields=contact_form_fields)
 
 @app.route('/personalProjects', methods=['GET', 'POST'])
@@ -67,7 +67,7 @@ def personalProjects():
     contact_form_fields = data['main']['contact_form_fields']
     project_data = data['in_personal_project']['personal_project']
     
-    return render_template('personalProjects.html', project_data=project_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/personalProjects.html', project_data=project_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
 
 @app.route('/eduProjects', methods=['GET', 'POST'])
@@ -78,7 +78,7 @@ def eduProjects():
     contact_form_fields = data['main']['contact_form_fields']
     courseData = data['in_edu_project']['edu_project']
     
-    return render_template('eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
 
 @app.route('/edu', methods=['GET', 'POST'])
@@ -99,10 +99,10 @@ def takenCourses():
     contact_form_fields = data['main']['contact_form_fields']
     courseData = data['in_edu_project']['course_data']
     
-    return render_template('takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
  
-@app.route('//test', methods=['GET', 'POST'])
+@app.route('/test', methods=['GET', 'POST'])
 def test():
     data = get_data()
     mainMenu_items = data['main']['menu_items']
@@ -110,11 +110,10 @@ def test():
     contact_form_fields = data['main']['contact_form_fields']   
     course_data = data['in_personal_project']['personal_project']
     
-    return render_template('test.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/test.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
     
 if __name__ == '__main__':
     app.run(debug=True)
-    
     
     

@@ -101,7 +101,7 @@ def get_data():
         "in_personal_project": {
             "menu_items": execute_query(pItemQuery),
             "social_menu_items": get_menu_items(socialQuery),
-            "personal_project": execute_query(pItemQuery),
+            "personal_project": execute_query(inPQuery),
             "contact_form_fields": get_contact_form_fields()
         }
     }
