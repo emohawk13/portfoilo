@@ -1,9 +1,23 @@
 import config as config
-from flask import jsonify, Flask, render_template, request
+from flask import jsonify, Flask, render_template, request, redirect, url_for
 from connections import get_data, push_contact
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
+
+@app.before_request
+def check_route_status():
+    path = request.path
+    data = get_data()
+    keys_to_check = ['main', 'in_project', 'edu', 'in_edu', 'in_edu_project', 'in_personal_project', 'blog', 'work', 'in_work']
+
+    for key in keys_to_check:
+        menu_items = data[key]['menu_items']
+        for item in menu_items:
+            if item.get("toRoute") == path and item.get("active", 0) == 0:
+                return redirect(url_for("underConstruction"))
+
+
 
 @app.route('/')
 def home():
@@ -122,6 +136,10 @@ def workProjects():
     
     return render_template('childTemplates/workProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
+ 
+@app.route('/underConstruction', methods=['GET', 'POST'])
+def underConstruction():
+    return render_template('childTemplates/underConstruction.html')
  
 @app.route('/test', methods=['GET', 'POST'])
 def test():

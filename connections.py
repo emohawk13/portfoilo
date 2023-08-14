@@ -108,6 +108,5 @@ def get_data():
 
 if __name__ == "__main__":  # This ensures the code is only run if the script is executed directly
     data = get_data()
-    in_work_menu_items = data["in_work"]["menu_items"]
-    for item in in_work_menu_items:
-        print(item)
+    print(data)
+
