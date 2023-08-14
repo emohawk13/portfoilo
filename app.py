@@ -52,7 +52,7 @@ def projects():
 @app.route('/projectBlog', methods=['GET', 'POST'])
 def projectBlog():
     data = get_data()
-    mainMenu_items = data['main']['menu_items']
+    mainMenu_items = data['blog']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
 
@@ -102,6 +102,27 @@ def takenCourses():
     return render_template('childTemplates/takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
  
+@app.route('/work', methods=['GET', 'POST'])
+def work():
+    data = get_data()
+    mainMenu_items = data['in_work']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    work_data = data['work']['work']
+    
+    return render_template('childTemplates/work.html',work_data=work_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+
+@app.route('/workProjects', methods=['GET', 'POST'])
+def workProjects():
+    data = get_data()
+    mainMenu_items = data['in_work']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    
+    return render_template('childTemplates/workProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+                            contact_form_fields=contact_form_fields)
+ 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     data = get_data()
@@ -115,5 +136,4 @@ def test():
     
 if __name__ == '__main__':
     app.run(debug=True)
-    
     

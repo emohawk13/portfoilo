@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block title %}Work Experience{% endblock %}
+
+{% block content %}
+    {% for exp in work_data %}
+    <div class="container" id="contentContainer">
+        <div class="subTitle">{{ exp.jobName }}</div>
+        <div class="subTContent">{{ exp.jobTitle }}</div>
+        <div class="subTContent">{{ exp.jobDesc }}</div>
+        <div class="subTContent">{{ exp.jobStart }}</div>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+{% endblock %}

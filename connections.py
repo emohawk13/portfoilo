@@ -71,38 +71,43 @@ def get_menu_items(query):
 def get_data():
     return {
         "main": {
-            "menu_items": get_menu_items(mainQuery),
+            "menu_items": get_menu_items(inMain),
             "social_menu_items": get_menu_items(socialQuery),
             "contact_form_fields": get_contact_form_fields()
         },
         "in_project": {
-            "menu_items": get_menu_items(projectQuery),
-            "social_menu_items": get_menu_items(socialQuery),
-            "contact_form_fields": get_contact_form_fields()
+            "menu_items": get_menu_items(inProject),
         },
         "edu": {
-            "menu_items": get_menu_items(eduQuery),
-            "social_menu_items": get_menu_items(socialQuery),
-            "contact_form_fields": get_contact_form_fields()
+            "menu_items": get_menu_items(inEdu),
         },
         "in_edu": {
-            "menu_items": get_menu_items(inPEduQuery),
-            "social_menu_items": get_menu_items(socialQuery),
+            "menu_items": get_menu_items(inEdu),
             "course_data": execute_query(courseData),
-            "contact_form_fields": get_contact_form_fields()
         },
         "in_edu_project": {
-            "menu_items": get_menu_items(projectQuery),
-            "social_menu_items": get_menu_items(socialQuery),
+            "menu_items": get_menu_items(inEdu),
             "course_data": execute_query(courseData),
-            "edu_project": execute_query(inPQuery),
-            "contact_form_fields": get_contact_form_fields()
+            "edu_project": execute_query(inPEduQuery),
         },
         "in_personal_project": {
-            "menu_items": execute_query(pItemQuery),
-            "social_menu_items": get_menu_items(socialQuery),
+            "menu_items": execute_query(inPQuery),
             "personal_project": execute_query(inPQuery),
-            "contact_form_fields": get_contact_form_fields()
+        },
+        "blog": {
+            "menu_items": execute_query(inBlog),
+        },
+        "work": {
+            "menu_items": get_menu_items(inWork),
+            "work": execute_query(jobQuery),
+        },
+        "in_work": {
+            "menu_items": get_menu_items(work),
         }
     }
 
+if __name__ == "__main__":  # This ensures the code is only run if the script is executed directly
+    data = get_data()
+    in_work_menu_items = data["in_work"]["menu_items"]
+    for item in in_work_menu_items:
+        print(item)

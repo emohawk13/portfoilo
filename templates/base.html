@@ -36,8 +36,7 @@
       <ul>
         {% for item in mainMenu_items %}
         <li>
-          <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
-
+          <a href="{{ url_for(item['toRoute']) }}">{{ item['name'] }}</a>
         </li>
         {% endfor %}
         {% for link in socialMenu_items %}
