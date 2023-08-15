@@ -24,6 +24,6 @@ document.getElementById("testButton").addEventListener("click", function () {
 function animateMenuItems() {
     const menuItems = document.querySelectorAll('.side-menu li');
     menuItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.1}s`; // Delay for staggered effect
+        item.style.transitionDelay = `${index * 0.1}s`; 
     });
 }

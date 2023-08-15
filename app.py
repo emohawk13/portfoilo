@@ -10,14 +10,11 @@ def check_route_status():
     path = request.path
     data = get_data()
     keys_to_check = ['main', 'in_project', 'edu', 'in_edu', 'in_edu_project', 'in_personal_project', 'blog', 'work', 'in_work']
-
     for key in keys_to_check:
         menu_items = data[key]['menu_items']
         for item in menu_items:
             if item.get("toRoute") == path and item.get("active", 0) == 0:
                 return redirect(url_for("underConstruction"))
-
-
 
 @app.route('/')
 def home():
@@ -137,10 +134,6 @@ def workProjects():
     return render_template('childTemplates/workProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
  
-@app.route('/underConstruction', methods=['GET', 'POST'])
-def underConstruction():
-    return render_template('childTemplates/underConstruction.html')
- 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     data = get_data()
@@ -149,7 +142,7 @@ def test():
     contact_form_fields = data['main']['contact_form_fields']   
     course_data = data['in_personal_project']['personal_project']
     
-    return render_template('childTemplates/test.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
+    return render_template('childTemplates/underConstruction.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
     
 if __name__ == '__main__':
