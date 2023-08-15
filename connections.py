@@ -61,6 +61,8 @@ def get_menu_items(query):
                 "toRoute": row.get("route", row.get("linkActual"))
             }
             if "linkIcon" in row:
+                item["name"] = row["linkName"]
+                item["link"] = row["linkActual"]
                 item["icon"] = row["linkIcon"]
             menu_items.append(item)
         return menu_items
