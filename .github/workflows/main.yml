@@ -18,17 +18,8 @@ jobs:
         echo "${{ secrets.DEPLOY_KEY }}" > private_key
         chmod 600 private_key
 
-    
-    - name: Setup SSH and rsync
-      env:
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-      run: |
-        echo "$DEPLOY_KEY" > deploy_key
-        chmod 600 deploy_key
-        eval "$(ssh-agent -s)"
-        ssh-add deploy_key
-
     - name: Deploy to server
       run: |
-        rsync -r --delete-after --quiet ${{ github.workspace }} emohawk13@dauhsoncapps.info:/var/www/html/
-        ssh emohawk13@dauhsoncapps.info "cd /var/www/html/ && ./deploy_script.sh"
+        rsync -r --delete-after --quiet -e 'ssh -i private_key' ${{ github.workspace }} emohawk13@dauhsoncapps.info:/var/www/html/
+        ssh -i private_key emohawk13@dauhsoncapps.info "cd /var/www/html/ && ./deploy_script.sh"
+
