@@ -12,6 +12,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Set up SSH key
+      run: |
+        echo "${{ secrets.DEPLOY_KEY }}" > private_key
+        chmod 600 private_key
+
     
     - name: Setup SSH and rsync
       env:
