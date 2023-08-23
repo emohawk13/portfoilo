@@ -1,0 +1,28 @@
+name: Flask CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Setup SSH and rsync
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      run: |
+        echo "$DEPLOY_KEY" > deploy_key
+        chmod 600 deploy_key
+        eval "$(ssh-agent -s)"
+        ssh-add deploy_key
+
+    - name: Deploy to server
+      run: |
+        rsync -r --delete-after --quiet ${{ github.workspace }} emohawk13@dauhsoncapps.info:/var/www/html/
+        ssh emohawk13@dauhsoncapps.info "cd /var/www/html/ && ./deploy_script.sh"
