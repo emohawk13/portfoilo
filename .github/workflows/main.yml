@@ -17,13 +17,8 @@ jobs:
       run: |
         echo "${{ secrets.DEPLOY_KEY }}" > private_key
         chmod 600 private_key
-    - name: Add SSH key to known_hosts
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan dauhsoncapps.info >> ~/.ssh/known_hosts
 
     - name: Deploy to server
       run: |
-        rsync -r --delete-after --quiet -e 'ssh -i private_key -o StrictHostKeyChecking=no' /home/runner/work/portfoilo/portfoilo emohawk13@dauhsoncapps.info:/var/www/html/
-        ssh -i private_key emohawk13@dauhsoncapps.info "cd /var/www/html/ && ./deploy_script.sh"
-
+        rsync -r --delete-after --quiet -e 'ssh -i private_key -o StrictHostKeyChecking=no' ${{ github.workspace }} emohawk13@dauhsoncapps.info:/var/www/html/
+        ssh -i private_key -o StrictHostKeyChecking=no emohawk13@dauhsoncapps.info "cd /var/www/html/ && ./deploy_script.sh"
