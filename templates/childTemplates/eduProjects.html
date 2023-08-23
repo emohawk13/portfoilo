@@ -9,20 +9,12 @@
 {% block content %}
 
 {% for course in courseData %}
-    <div class="container" id="contentContainer">
-        <div class="subTitle">{{ course.projectName }}</div>
-        <div class="subTContent">{{ course.projectDisc }}</div>
-    </div>
+<div class="container" id="contentContainer">
+    <div class="subTitle">{{ course.projectName }}</div>
+    <div class="subTContent">{{ course.projectDisc }}</div>
+</div>
 {% endfor %}
-
-
-<div class="container" id="content-container">
-    <div class="subTitle">Tester Project</div>
-    <div class="subTContent" id="lorem-text"></div>
 </div>
-</div>
-<script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
-
 {% endblock %}
 
 {% block scripts %}

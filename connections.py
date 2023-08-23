@@ -18,11 +18,15 @@ def connect_to_db():
     )
 
 def execute_query(query, params=None):
-    with connect_to_db() as conn:
+    conn = connect_to_db()
+    try:
         with conn.cursor() as cur:
             cur.execute(query, params)
             results = cur.fetchall()
-    return results
+        return results
+    finally:
+        conn.close()
+
 
 def push_contact(first_name, last_name, email, about, pressed):
     current_time = datetime.datetime.now()

@@ -9,6 +9,7 @@
 {% block title %}Personal Projects{% endblock %}
 
 {% block content %}
+
 <body>
     <div id="matrix-container">
         <div class="container" id="contentContainer">
@@ -21,18 +22,12 @@
                 <div class="subTContent">{{ project.projectDisc }}</div>
             </div>
             {% endfor %}
-            <div class="container" id="content-container">
-                <div class="subTitle">Tester Project</div>
-                <div class="subTContent" id="lorem-text"></div>
-            </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
 </body>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/pProjects.js') }}"></script>
 <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-<script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
 {% endblock %}
