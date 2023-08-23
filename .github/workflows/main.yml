@@ -17,9 +17,6 @@ jobs:
       run: |
         echo "${{ secrets.DEPLOY_KEY }}" > private_key
         chmod 600 private_key
-    - name: Add SSH key to known_hosts
-      run: |
-        echo "dauhsoncapps.info ssh-rsa AAAAB3NzaC..." >> ~/.ssh/known_hosts
 
     - name: Deploy to server
       run: |
