@@ -27,7 +27,6 @@ def execute_query(query, params=None):
     finally:
         conn.close()
 
-
 def push_contact(first_name, last_name, email, about, pressed):
     current_time = datetime.datetime.now()
     try:
