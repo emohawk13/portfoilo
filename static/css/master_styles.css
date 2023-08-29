@@ -1,0 +1,219 @@
+/* General Styles */
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+  }
+  
+  body, html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  
+  /* Parallax Section */
+  .parallax-section {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .background,
+  .foreground {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  /* Content Section */
+  .content-section {
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 90%;
+    margin: 50px auto 0; /* Adjusted margin-top */
+    background-color: #333;
+    color: white;
+    z-index: 4;
+    position: relative;
+  }
+  
+  .content-section::before,
+  .content-section::after {
+    content: "";
+    display: block;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5%;
+    z-index: -1;
+  }
+  
+  .content-section::before {
+    left: -5%;
+  }
+  
+  .content-section::after {
+    right: -5%;
+  }
+  
+  /* Side Menu and Modal */
+  .side-menu,
+  .modal {
+    position: fixed;
+    z-index: 999;
+    background-color: #333;
+    border: 1px solid #0f0;
+  }
+  
+  .side-menu.expanded ul {
+    transform: translateY(calc(100% - 500px));
+    padding: 45px 35px 0;
+  }
+  
+  .side-menu.expanded li,
+  .side-menu.expanded .smButton {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 10px;
+  }
+  
+  .smButton {
+    padding: 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #0f0;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .modal {
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .modal-dialog {
+    margin: 5% auto;
+    max-width: 500px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #0f0;
+    padding: 10px 0 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .modal-body {
+    margin-bottom: 20px;
+  }
+  
+  .close {
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .close:hover {
+    color: #fff;
+  }
+  
+  /* Header */
+  .title a {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 0 5px black;
+  }
+  
+  .wrapper {
+    height: 120vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 10px;
+  }
+  
+  /* Specific Styles */
+  .title {
+    align-items: center;
+    font-size: 64px;
+  }
+  
+  .subTitle {
+    font-size: 42px;
+  }
+  
+  .subTContent {
+    font-size: 18px;
+  }
+  
+  /* Matrix Animation */
+  #matrix-container {
+    position: fixed;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: -1;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .matrix-character {
+    animation: animateMatrixCharacter 5s linear infinite;
+    opacity: 0;
+    z-index: 0;
+    margin: 1px 0;
+    letter-spacing: 1px;
+    transition: 0.3s ease-in-out;
+    top: 0;
+  }
+  
+  .matrix-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  @keyframes animateMatrixCharacter {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 1;
+    }
+  }
+  

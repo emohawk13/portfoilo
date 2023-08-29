@@ -1,8 +1,12 @@
 import config as config
 from flask import jsonify, Flask, render_template, request, redirect, url_for
 from connections import get_data, push_contact
+from projectData.CEIS412.math import *
+
 
 app = Flask(__name__)
+
+
 app.config.from_pyfile('config.py')
 
 @app.before_request
@@ -144,7 +148,32 @@ def test():
     
     return render_template('childTemplates/underConstruction.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
+
+@app.route('/currentProjects')
+def currentProjects():
+    return render_template('childTemplates/currentProjects.html')
+
+@app.route('/ceis412', methods=['GET', 'POST'])
+def ceis412():
+    monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
+    if request.method == 'POST':
+        monthlySales = [0] * len(monthArray)
+
+        get_sales(monthArray, monthlySales)
+        totalSales = compute_total_sales(monthlySales)
+        averageSales = compute_average_sales(monthlySales)
+        highestMonth = compute_highest_month(monthlySales)
+        highestSales = monthlySales[highestMonth]
+        lowestMonth = compute_lowest_month(monthlySales)
+        lowestSales = monthlySales[lowestMonth]
+
+        return render_template('projects/edu/CEIS412/output.html', totalSales=totalSales, averageSales=averageSales, highestMonth=monthArray[highestMonth], highestSales=highestSales, lowestMonth=monthArray[lowestMonth], lowestSales=lowestSales, monthArray=monthArray)
+
+    return render_template('projects/edu/CEIS412/input.html', monthArray=monthArray)
+
+
+  
 if __name__ == '__main__':
     app.run(debug=True)
     

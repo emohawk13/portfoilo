@@ -1,72 +1,34 @@
-body {
-    margin: 0;
-    background-color: #111;
-    font-family: "Courier New", monospace;
-    font-size: 16px;
-    position: relative;
+.introSect {
+    padding-top: 20px;
 }
 
-
-@keyframes animateMatrixCharacter {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    80% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(100vh);
-        opacity: 1;
-    }
-}
-
-.container {
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #808080; /* Grey color */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     text-align: center;
-    padding: 1rem;
-    width: 90%;
-    height: 10%;
-    background-color: #333;
-    box-shadow: 0px 0px 12px rgba(0, 255, 0, 0.6);
-    z-index: 1;
-    margin-top: 50px;  /* NEW */
-    margin-left: auto; 
-    margin-right: auto;
-    transition: 0.3s ease-in-out;
-    position: relative;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
 }
 
-.container::before, .container::after {
-    content: "";
-    display: block;
-    background-color: #333;
-    width: 5%;
-    z-index: -1;
+.button:hover {
+    background-color: #999999; /* Slightly lighter grey on hover */
+    transform: scale(1.05); /* Increase size a bit on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle box shadow on hover */
+    text-shadow: 1px 1px 2px #ffffff; /* White text shadow on hover */
 }
 
-.container::before {
-    left: -5%;
+.button:active {
+    transform: scale(0.95); /* Slightly decrease size on click */
+    box-shadow: none; /* Remove box shadow on click */
 }
 
-.container::after {
-    right: -5%;
-}
-
-.title, .subTitle, .subTContent {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    transition: 0.3s ease-in-out;
-}
-
-.title {
-    align-items: center;
-    font-size: 64px;
-}
-
-.subTitle {
-    font-size: 42px;
-}
-
-.subTContent {
-    font-size: 18px;
+.basicStuff {
+    padding-top: 20px;
 }

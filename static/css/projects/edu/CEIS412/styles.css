@@ -1,0 +1,129 @@
+/* styles.css */
+
+/* Styling for common elements */
+
+/* Overall Link styles */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Styling for input.html */
+
+/* Body styles */
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Center the content on the page */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333; /* Dark grey background */
+}
+/* Form styles */
+form {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    background-color: #444;
+}
+
+/* Months in two columns */
+.months-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+}
+
+.months-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Input styles for user inputs */
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Button styles for form submission */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Styling for output.html */
+
+/* Header styles */
+h1 {
+    text-align: center;
+    padding: 1.5em;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* Result container styles */
+.result-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
+}
+
+/* Result paragraph styles */
+.result {
+    margin-bottom: 1.5em;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Result value styles */
+.result-value {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.results-color{
+    color: #007bff;
+}
