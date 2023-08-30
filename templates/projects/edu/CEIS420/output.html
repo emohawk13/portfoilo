@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/projects/edu/CEIS420/styles.css') }}">
+</head>
+<body>
+    <h1>Sales Result</h1>
+    {% if totalSales is defined and averageSales is defined and highestMonth is defined and highestSales is defined and lowestMonth is defined and lowestSales is defined %}
+    <div class="container">
+        <div class="result-container">
+            {% if totalSales != None %}
+            <p class="results-color">Total yearly sales: ${{ totalSales }}</p>
+            {% endif %}
+            
+            {% if averageSales != None %}
+            <p class="results-color">Average monthly sale: ${{ averageSales }}</p>
+            {% endif %}
+            
+            {% if highestMonth != None and highestSales is defined %}
+            <p class="results-color">Highest sales month: {{ highestMonth }} ${{ highestSales }}</p>
+            {% endif %}
+            
+            {% if lowestMonth != None and lowestSales is defined %}
+            <p class="results-color">Lowest sales month: {{ lowestMonth }} ${{ lowestSales }}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <p class="no-data">No data available please re-enter your information or contact support</p>
+    </div>
+    {% endif %}
+    <div class="button"><a href="{{ url_for('goHome') }}">Back to Dauhson's Portfolio</a></div>
+</body>
+</html>
+
+
+

@@ -1,3 +1,4 @@
+import os
 import config as config
 from flask import jsonify, Flask, render_template, request, redirect, url_for
 from connections import get_data, push_contact
@@ -60,9 +61,11 @@ def projects():
     mainMenu_items = data['in_project']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
-
+    projectData = data['in_project']['allProjects']
+    eduProjectData = data['in_project']['eduProjects']
+    
     return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields)
+                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData)
 
 @app.route('/projectBlog', methods=['GET', 'POST'])
 def projectBlog():
@@ -91,10 +94,10 @@ def eduProjects():
     mainMenu_items = data['edu']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
-    courseData = data['in_edu_project']['edu_project']
+    eduProjectData = data['in_project']['eduProjects']
     
-    return render_template('childTemplates/eduProjects.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
-                            contact_form_fields=contact_form_fields)
+    return render_template('childTemplates/eduProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields, eduProjectData=eduProjectData)
 
 @app.route('/edu', methods=['GET', 'POST'])
 def edu():
@@ -151,10 +154,19 @@ def test():
 
 @app.route('/currentProjects')
 def currentProjects():
-    return render_template('childTemplates/currentProjects.html')
-
-@app.route('/ceis412', methods=['GET', 'POST'])
-def ceis412():
+    data = get_data()
+    mainMenu_items = data['in_project']['menu_items']
+    socialMenu_items = data['main']['social_menu_items']
+    contact_form_fields = data['main']['contact_form_fields']
+    projectData = data['in_project']['allProjects']
+    eduProjectData = data['in_progress']['eduProjects']
+    personal_projects = data['in_progress']['personalProjects']
+    
+    return render_template('childTemplates/currentProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData, personal_projects=personal_projects)
+    
+@app.route('/ceis420', methods=['GET', 'POST'])
+def ceis420():
     monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
     if request.method == 'POST':
@@ -168,12 +180,10 @@ def ceis412():
         lowestMonth = compute_lowest_month(monthlySales)
         lowestSales = monthlySales[lowestMonth]
 
-        return render_template('projects/edu/CEIS412/output.html', totalSales=totalSales, averageSales=averageSales, highestMonth=monthArray[highestMonth], highestSales=highestSales, lowestMonth=monthArray[lowestMonth], lowestSales=lowestSales, monthArray=monthArray)
+        return render_template('projects/edu/CEIS420/output.html', totalSales=totalSales, averageSales=averageSales, highestMonth=monthArray[highestMonth], highestSales=highestSales, lowestMonth=monthArray[lowestMonth], lowestSales=lowestSales, monthArray=monthArray)
 
-    return render_template('projects/edu/CEIS412/input.html', monthArray=monthArray)
+    return render_template('projects/edu/CEIS420/input.html', monthArray=monthArray)
 
-
-  
 if __name__ == '__main__':
     app.run(debug=True)
     

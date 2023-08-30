@@ -82,6 +82,8 @@ def get_data():
         },
         "in_project": {
             "menu_items": get_menu_items(inProject),
+            "allProjects": execute_query(allProjectDataQuery),
+            "eduProjects": execute_query(eduProjectDataQuery),
         },
         "edu": {
             "menu_items": get_menu_items(inEdu),
@@ -93,11 +95,11 @@ def get_data():
         "in_edu_project": {
             "menu_items": get_menu_items(inEdu),
             "course_data": execute_query(courseData),
-            "edu_project": execute_query(inPEduQuery),
+            "edu_project": execute_query(eduProjectDataQuery),
         },
         "in_personal_project": {
-            "menu_items": execute_query(inPQuery),
-            "personal_project": execute_query(inPQuery),
+            "menu_items": execute_query(inProject),
+            "personal_project": execute_query(personalProjectDataQuery),
         },
         "blog": {
             "menu_items": execute_query(inBlog),
@@ -105,13 +107,22 @@ def get_data():
         "work": {
             "menu_items": get_menu_items(inWork),
             "work": execute_query(jobQuery),
+            "work_projects": execute_query(workProjectDataQuery),
         },
         "in_work": {
             "menu_items": get_menu_items(work),
+        },
+        "in_progress": {
+            "eduProjects": execute_query(eduInProgress),
+            "personalProjects": execute_query(personalProjectDataQuery)
         }
     }
+    
+def get_test(): 
+        return execute_query(allProjectDataQuery)
+    
 
 if __name__ == "__main__":  # This ensures the code is only run if the script is executed directly
-    data = get_data()
+    data = get_test()
     print(data)
 

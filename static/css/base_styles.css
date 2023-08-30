@@ -116,7 +116,7 @@ body {
 }
 
 .container {
-  text-align: center;
+  
   padding: 1rem;
   width: 90%;
   height: 10%;
@@ -153,7 +153,7 @@ body {
 }
 
 .title {
-  align-items: center;
+  align-items: right;
   font-size: 64px;
 }
 
@@ -190,4 +190,27 @@ body {
 .button:active {
   transform: scale(0.95); /* Slightly decrease size on click */
   box-shadow: none; /* Remove box shadow on click */
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background-color: darkgrey;
 }

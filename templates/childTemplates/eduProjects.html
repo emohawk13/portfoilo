@@ -8,14 +8,29 @@
 
 {% block content %}
 
-{% for course in courseData %}
-<div class="container" id="contentContainer">
-    <div class="subTitle">{{ course.projectName }}</div>
-    <div class="subTContent">{{ course.projectDisc }}</div>
-</div>
+<!--edu project content-->
+{% for project in eduProjectData %}
+    <div class="container" id="contentContainer">
+        <div class="title">Current Course Work</div>
+        <div class="subTitle">{{ project.courseTitle }}</div>
+        <div class="subTitle">Course Number: {{ project.classMajor }} {{ project.devryCourseId }}</div>
+        <div class="subTContent">{{ project.courseDis }}</div>
+        <div class="carousel">
+            <div class="carousel-content">
+                {% set image_list = project.images.split(',') %}
+                {% for image in image_list %}
+                    <img class="carousel-item" src="{{ url_for('static', filename=project.image_dir ~ '/' ~ image.strip()) }}" alt="Image">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="subTContent">{{ project.pContent }}</div>
+        <div class="basicStuff">
+            <a href="{{ url_for('ceis420') }}" class="button">Check this project out!</a>
+        </div>
+    </div>
 {% endfor %}
-</div>
 {% endblock %}
+
 
 {% block scripts %}
 {% endblock %}

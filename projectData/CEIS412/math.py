@@ -18,7 +18,8 @@ def compute_total_sales(monthlySales):
 def compute_average_sales(monthlySales):
     total = compute_total_sales(monthlySales)
     average = total / len(monthlySales)
-    return average
+    formatted_average = "{:.2f}".format(average)
+    return formatted_average
 
 def compute_highest_month(monthlySales):
     highest_index = monthlySales.index(max(monthlySales))
