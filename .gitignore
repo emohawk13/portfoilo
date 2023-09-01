@@ -10,3 +10,8 @@ workspace.txt
 projectConnection.py
 config.py
 test.py
+.dockerignore
+dockerfile
+docker-compose.yml
+test.py
+.github/
