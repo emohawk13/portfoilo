@@ -127,3 +127,11 @@ h1 {
 .results-color{
     color: #007bff;
 }
+
+.pattern-box {
+    padding: 20px;
+    background-color: #444;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+    margin: 10px;
+}

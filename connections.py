@@ -83,7 +83,8 @@ def get_data():
         "in_project": {
             "menu_items": get_menu_items(inProject),
             "allProjects": execute_query(allProjectDataQuery),
-            "eduProjects": execute_query(eduProjectDataQuery),
+            "eduProjects": execute_query(eduInProgress),
+            "eduProjectsPast": execute_query(eduProjectDataQuery)
         },
         "edu": {
             "menu_items": get_menu_items(inEdu),
@@ -95,7 +96,6 @@ def get_data():
         "in_edu_project": {
             "menu_items": get_menu_items(inEdu),
             "course_data": execute_query(courseData),
-            "edu_project": execute_query(eduProjectDataQuery),
         },
         "in_personal_project": {
             "menu_items": execute_query(inProject),

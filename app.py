@@ -1,6 +1,6 @@
 import os
 import config as config
-from flask import jsonify, Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from connections import get_data, push_contact
 from projectData.CEIS412.math import *
 
@@ -63,9 +63,11 @@ def projects():
     contact_form_fields = data['main']['contact_form_fields']
     projectData = data['in_project']['allProjects']
     eduProjectData = data['in_project']['eduProjects']
+    eduPast = data['in_project']['eduProjectsPast']
     
     return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData)
+                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData,
+                            eduPast=eduPast)
 
 @app.route('/projectBlog', methods=['GET', 'POST'])
 def projectBlog():
@@ -91,13 +93,16 @@ def personalProjects():
 @app.route('/eduProjects', methods=['GET', 'POST'])
 def eduProjects():
     data = get_data()
-    mainMenu_items = data['edu']['menu_items']
+    mainMenu_items = data['in_project']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
+    projectData = data['in_project']['allProjects']
     eduProjectData = data['in_project']['eduProjects']
+    eduPast = data['in_project']['eduProjectsPast']
     
-    return render_template('childTemplates/eduProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, eduProjectData=eduProjectData)
+    return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData,
+                            eduPast=eduPast)
 
 @app.route('/edu', methods=['GET', 'POST'])
 def edu():
@@ -158,12 +163,11 @@ def currentProjects():
     mainMenu_items = data['in_project']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
-    projectData = data['in_project']['allProjects']
-    eduProjectData = data['in_progress']['eduProjects']
     personal_projects = data['in_progress']['personalProjects']
+    eduProjectData = data['in_progress']['eduProjects']
     
     return render_template('childTemplates/currentProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData, personal_projects=personal_projects)
+                            contact_form_fields=contact_form_fields, eduProjectData=eduProjectData, personal_projects=personal_projects)
     
 @app.route('/ceis420', methods=['GET', 'POST'])
 def ceis420():
@@ -183,6 +187,31 @@ def ceis420():
         return render_template('projects/edu/CEIS420/output.html', totalSales=totalSales, averageSales=averageSales, highestMonth=monthArray[highestMonth], highestSales=highestSales, lowestMonth=monthArray[lowestMonth], lowestSales=lowestSales, monthArray=monthArray)
 
     return render_template('projects/edu/CEIS420/input.html', monthArray=monthArray)
+
+@app.route('/ceis420wk2_default', methods=['GET', 'POST'])
+def ceis420wk2_default():
+    rows = 10
+    pattern_A = patA(rows)
+    pattern_B = patB(rows)
+    pattern_C = patC(rows)
+    pattern_D = patD(rows)
+    return render_template('projects/edu/CEIS420/week2.html', pattern_A=pattern_A, pattern_B=pattern_B, pattern_C=pattern_C, pattern_D=pattern_D)
+
+@app.route('/ceis420wk2/<string:pattern_type>/<int:numRows>', methods=['GET', 'POST'])
+def ceis420wk2(pattern_type, numRows):
+    pattern_functions = {
+        'patA': patA,
+        'patB': patB,
+        'patC': patC,
+        'patD': patD
+    }
+    
+    pattern_function = pattern_functions.get(pattern_type)
+    
+    if pattern_function is None:
+        return jsonify(error="Invalid pattern type"), 400
+    
+    return jsonify(pattern=generate_pattern(pattern_function, numRows))
 
 if __name__ == '__main__':
     app.run(debug=True)

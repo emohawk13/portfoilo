@@ -19,13 +19,13 @@
             <div class="carousel-content">
                 {% set image_list = project.images.split(',') %}
                 {% for image in image_list %}
-                    <img class="carousel-item" src="{{ url_for('static', filename=project.image_dir ~ '/' ~ image.strip()) }}" alt="Image">
+                    <img class="carousel-item" src="{{ url_for('static', filename=image.strip()) }}" alt="Image">
                 {% endfor %}
             </div>
         </div>
         <div class="subTContent">{{ project.pContent }}</div>
         <div class="basicStuff">
-            <a href="{{ url_for('ceis420') }}" class="button">Check this project out!</a>
+            <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
         </div>
     </div>
 {% endfor %}
@@ -42,3 +42,5 @@
     var myCarousel = new bootstrap.Carousel(document.getElementById('imageCarousel'));
 </script>
 {% endblock %}
+
+

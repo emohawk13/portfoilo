@@ -8,11 +8,33 @@
 
 {% block content %}
 
-<!--edu project content-->
-{% for project in eduProjectData %}
-    <div class="container" id="contentContainer">
-        <div class="title">Current Course Work</div>
-        <div class="subTitle">{{ project.courseTitle }}</div>
+<!-- Current Educational Projects -->
+<div class="container" id="contentContainer">
+    <div class="title">Current Course Work</div>
+    {% for projectNew in eduProjectData %}
+        <div class="subTitle">{{ projectNew.courseTitle }} : {{ projectNew.title}}</div>
+        <div class="subTitle">Course Number: {{ projectNew.classMajor }} {{ projectNew.devryCourseId }}</div>
+        <div class="subTContent">Please See {{ projectNew.courseTitle }} Week 1 for Course Description</div>
+        <div class="carousel">
+            <div class="carousel-content">
+                {% set image_list = projectNew.images.split(',') %}
+                {% for image in image_list %}
+                    <img class="carousel-item" src="{{ url_for('static', filename=image.strip()) }}" alt="Image">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="subTContent">{{ projectNew.pContent }}</div>
+        <div class="basicStuff">
+            <a href="{{ url_for(projectNew.route) }}" class="button">Check out my latest Course project!</a>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Past Educational Projects -->
+<div class="container" id="contentContainer">
+    <div class="title">Past Course Work</div>
+    {% for project in eduPast    %}
+        <div class="subTitle">{{ project.courseTitle }} : {{ project.title}}</div>
         <div class="subTitle">Course Number: {{ project.classMajor }} {{ project.devryCourseId }}</div>
         <div class="subTContent">{{ project.courseDis }}</div>
         <div class="carousel">
@@ -25,10 +47,10 @@
         </div>
         <div class="subTContent">{{ project.pContent }}</div>
         <div class="basicStuff">
-            <a href="{{ url_for('ceis420') }}" class="button">Check this project out!</a>
+            <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}
 
 
