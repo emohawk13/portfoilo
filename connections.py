@@ -45,9 +45,8 @@ def get_contact_form_fields():
         "contactEmail": "Email: ",
         "tellMeAboutYou": "Tell me about yourself: ",
     }
-    query = "SHOW COLUMNS FROM ContactMe"
     try:
-        results = execute_query(query)
+        results = execute_query(contactQuery)
         return [{"name": row["Field"], "label": field_labels.get(row["Field"], row["Field"])} 
                 for row in results if row["Field"] not in ["contactId", "suggestedProject", "timeOfContact"]]
     except Exception as e:
@@ -80,7 +79,7 @@ def get_data():
             "social_menu_items": get_menu_items(socialQuery),
             "contact_form_fields": get_contact_form_fields()
         },
-        "in_project": {
+        "project": {
             "menu_items": get_menu_items(inProject),
             "allProjects": execute_query(allProjectDataQuery),
             "eduProjects": execute_query(eduInProgress),
@@ -88,34 +87,15 @@ def get_data():
         },
         "edu": {
             "menu_items": get_menu_items(inEdu),
-        },
-        "in_edu": {
-            "menu_items": get_menu_items(inEdu),
-            "course_data": execute_query(courseData),
-        },
-        "in_edu_project": {
-            "menu_items": get_menu_items(inEdu),
-            "course_data": execute_query(courseData),
-        },
-        "in_personal_project": {
-            "menu_items": execute_query(inProject),
-            "personal_project": execute_query(personalProjectDataQuery),
-        },
-        "blog": {
-            "menu_items": execute_query(inBlog),
-        },
-        "work": {
-            "menu_items": get_menu_items(inWork),
-            "work": execute_query(jobQuery),
-            "work_projects": execute_query(workProjectDataQuery),
-        },
-        "in_work": {
-            "menu_items": get_menu_items(work),
-        },
-        "in_progress": {
             "eduProjects": execute_query(eduInProgress),
             "personalProjects": execute_query(personalProjectDataQuery),
             "otherEduProjects": execute_query(otherEduProjectDataQuery)
+        },
+        "work": {
+            "menu_items": get_menu_items(inWork),
+            "social_menu_items": get_menu_items(socialQuery),
+            "contact_form_fields": get_contact_form_fields(),
+            "work": execute_query(jobQuery)
         }
     }
     

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block styles %}
@@ -7,53 +6,22 @@
 
 {% block title %}Projects{% endblock %}
 
+<!-- Current Projects -->
 {% block content %}
 
-<!-- Current Educational Projects -->
-<div class="container" id="contentContainer">
-    <div class="title">Current Course Work</div>
-    {% for projectNew in eduProjectData %}
-        <div class="subTitle">{{ projectNew.courseTitle }} : {{ projectNew.title}}</div>
-        <div class="subTitle">Course Number: {{ projectNew.classMajor }} {{ projectNew.devryCourseId }}</div>
-        <div class="subTContent">Please See {{ projectNew.courseTitle }} Week 1 for Course Description</div>
-        <div class="carousel">
-            <div class="carousel-content">
-                {% set image_list = projectNew.images.split(',') %}
-                {% for image in image_list %}
-                    <img class="carousel-item" src="{{ url_for('static', filename=image.strip()) }}" alt="Image">
-                {% endfor %}
-            </div>
+<div id="matrix-container">
+    <div class="container" id="contentContainer">
+        <h1 class="title" id="contentContainer">Personal Projects</h1>
+    </div>
+    {% for project in project_data %}
+    <div>
+        <div class="container" id="contentContainer">
+            <div class="subTitle">{{ project.projectName }}</div>
+            <div class="subTContent">{{ project.projectDisc }}</div>
         </div>
-        <div class="subTContent">{{ projectNew.pContent }}</div>
-        <div class="basicStuff">
-            <a href="{{ url_for(projectNew.route) }}" class="button">Check out my latest Course project!</a>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
-
-<!-- Past Educational Projects -->
-<div class="container" id="contentContainer">
-    <div class="title">Past Course Work</div>
-    {% for project in eduPast    %}
-        <div class="subTitle">{{ project.courseTitle }} : {{ project.title}}</div>
-        <div class="subTitle">Course Number: {{ project.classMajor }} {{ project.devryCourseId }}</div>
-        <div class="subTContent">{{ project.courseDis }}</div>
-        <div class="carousel">
-            <div class="carousel-content">
-                {% set image_list = project.images.split(',') %}
-                {% for image in image_list %}
-                    <img class="carousel-item" src="{{ url_for('static', filename=project.image_dir ~ '/' ~ image.strip()) }}" alt="Image">
-                {% endfor %}
-            </div>
-        </div>
-        <div class="subTContent">{{ project.pContent }}</div>
-        <div class="basicStuff">
-            <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
-        </div>
-    {% endfor %}
-</div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
@@ -61,5 +29,3 @@
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="{{ url_for('static', filename='js/loremGen.js') }}"></script>
 {% endblock %}
-
-
