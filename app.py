@@ -90,19 +90,6 @@ def personalProjects():
     return render_template('childTemplates/personalProjects.html', project_data=project_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
 
-@app.route('/eduProjects', methods=['GET', 'POST'])
-def eduProjects():
-    data = get_data()
-    mainMenu_items = data['in_project']['menu_items']
-    socialMenu_items = data['main']['social_menu_items']
-    contact_form_fields = data['main']['contact_form_fields']
-    projectData = data['in_project']['allProjects']
-    eduProjectData = data['in_project']['eduProjects']
-    eduPast = data['in_project']['eduProjectsPast']
-    
-    return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData,
-                            eduPast=eduPast)
 
 @app.route('/edu', methods=['GET', 'POST'])
 def edu():
@@ -110,9 +97,13 @@ def edu():
     mainMenu_items = data['edu']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
+    otherEduData = data['in_progress']['otherEduProjects'] 
+    eduProjectData = data['in_progress']['eduProjects']
+    eduPast = data['in_project']['eduProjectsPast']
 
-    return render_template('childTemplates/edu.html',  mainMenu_items= mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields)
+    return render_template('childTemplates/edu.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
+                            contact_form_fields=contact_form_fields, otherEduData=otherEduData, eduProjectData=eduProjectData,
+                            eduPast=eduPast)
 
 @app.route('/takenCourses', methods=['GET', 'POST'])
 def takenCourses():
@@ -145,30 +136,7 @@ def workProjects():
     
     return render_template('childTemplates/workProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
- 
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-    data = get_data()
-    mainMenu_items = data['main']['menu_items']
-    socialMenu_items = data['main']['social_menu_items']
-    contact_form_fields = data['main']['contact_form_fields']   
-    course_data = data['in_personal_project']['personal_project']
-    
-    return render_template('childTemplates/underConstruction.html', course_data=course_data, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
-                            contact_form_fields=contact_form_fields)
 
-@app.route('/currentProjects')
-def currentProjects():
-    data = get_data()
-    mainMenu_items = data['in_project']['menu_items']
-    socialMenu_items = data['main']['social_menu_items']
-    contact_form_fields = data['main']['contact_form_fields']
-    personal_projects = data['in_progress']['personalProjects']
-    eduProjectData = data['in_progress']['eduProjects']
-    
-    return render_template('childTemplates/currentProjects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, eduProjectData=eduProjectData, personal_projects=personal_projects)
-    
 @app.route('/ceis420', methods=['GET', 'POST'])
 def ceis420():
     monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

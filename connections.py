@@ -114,7 +114,8 @@ def get_data():
         },
         "in_progress": {
             "eduProjects": execute_query(eduInProgress),
-            "personalProjects": execute_query(personalProjectDataQuery)
+            "personalProjects": execute_query(personalProjectDataQuery),
+            "otherEduProjects": execute_query(otherEduProjectDataQuery)
         }
     }
     

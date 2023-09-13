@@ -2,21 +2,126 @@
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edu_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edu_styles.css') }}">
 {% endblock %}
 
 {% block title %}Education{% endblock %}
 
 {% block content %}
-
-<div class="basicStuff">I am a distinguished graduate of DeVry University, where I secured an Associate's Degree in Information Technology and Networking. My dedication to academia earned me a spot on the Dean's List. Now, I'm ardently working towards my Bachelor's Degree in Software Design and Programming, constantly broadening my horizons. I've set my sights on Colorado Technical University — not just for a Master's in Computer Science, but also for their esteemed Doctoral program in Big Data. With an unwavering passion for Artificial Intelligence and Machine Learning, I am poised to channel my education into pioneering strides in the AI/ML field.</div>
-
-<section class="attendedSect">
+<section>
+    <div>
+        I am a distinguished graduate of DeVry University,
+        where I secured an Associate's Degree in Information Technology and Networking.
+        My dedication to academia earned me a spot on the Dean's List.
+        Now, I'm ardently working towards my Bachelor's Degree in Software Design and Programming,
+        constantly broadening my horizons. I've set my sights
+        on Colorado Technical University — not just for a Master's in Computer Science,
+        but also for their esteemed Doctoral program in Big Data. With
+        an unwavering passion for Artificial Intelligence and Machine Learning,
+        I am poised to channel my education into pioneering strides in the AI/ML field.
+    </div>
+</section>
+<section>
     <a href="{{ url_for('takenCourses') }}" class="button">Check out some of the courses I've taken</a>
 </section>
+<section>
+    <!--edu project content-->
+    {% for project in eduProjectData %}
+    <div class="container" id="contentContainer">
+        <div class="title">Current DeVry Course Work</div>
+        <div class="subTitle">{{ project.courseTitle }}</div>
+        <div class="subTitle">Course Number: {{ project.classMajor }} {{ project.devryCourseId }}</div>
+        <div class="subTContent">{{ project.courseDis }}</div>
+        <div class="carousel">
+            <div class="carousel-content">
+                {% if project and 'images' in project and project.images %}
+                {% set image_list = project.images.split(',') %}
+                {% for image in image_list %}
+                <img class="carousel-item" src="{{ url_for('static', filename=image.strip()) }}" alt="Image">
+                {% endfor %}
+                {% else %}
+                <p>No images available for this project.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="subTContent">{{ project.pContent }}</div>
+        <div class="basicStuff">
+            <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<section>
+    {% for project in otherEduData %}
+    {% if project.isActive == 1 %}
+    <div class="container" id="contentContainer">
+        <div class="title">Current Other Educational Ventures</div>
 
-<div class="basicStuff">
-    <a href="{{ url_for('currentProjects') }}" class="button">Check out what I'm currently working on</a>
-</div>
+        {% if 'courseTitle' in project %}
+        <div class="subTitle">{{ project.courseTitle }}</div>
+        {% else %}
+        <div class="subTitle">Title Not Available</div>
+        {% endif %}
+        {% if 'subTitle' in project %}
+        <div class="subTitle">{{ project.subTitle }}</div>
+        {% else %}
+        <div class="subTitle">Sub-Title Not Available</div>
+        {% endif %}
+        {% if 'courseDis' in project %}
+        <div class="subTContent">{{ project.courseDis }}</div>
+        {% else %}
+        <div class="subTitle">Description Not Available</div>
+        {% endif %}
+        <div class="carousel">
+            <div class="carousel-content">
+                {% if project and 'images' in project and project.images %}
+                {% set image_list = project.images.split(',') %}
+                {% for image in image_list %}
+                <img class="carousel-item" src="{{ url_for('static', filename=image.strip()) }}" alt="Image">
+                {% endfor %}
+                {% else %}
+                <p>No images available for this project.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% if 'pContent' in project %}
+        <div class="subTContent">{{ project.pContent }}</div>
+        {% else %}
+        <div class="subTitle">Description Not Available</div>
+        {% endif %}
+        {% if 'route' in project %}
+        <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
+        {% else %}
+        <p>No project link available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</section>
+<section>
+    <!-- Past Educational Projects -->
+    <div class="container" id="contentContainer">
+        <div class="title">Past Course Work</div>
+        {% for project in eduPast %}
+        <div class="subTitle">{{ project.courseTitle }} : {{ project.title}}</div>
+        <div class="subTitle">Course Number: {{ project.classMajor }} {{ project.devryCourseId }}</div>
+        <div class="subTContent">{{ project.courseDis }}</div>
+        <div class="carousel">
+            <div class="carousel-content">
+                {% set image_list = project.images.split(',') %}
+                {% for image in image_list %}
+                <img class="carousel-item"
+                    src="{{ url_for('static', filename=project.image_dir ~ '/' ~ image.strip()) }}" alt="Image">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="subTContent">{{ project.pContent }}</div>
+        <div class="basicStuff">
+            <a href="{{ url_for(project.route) }}" class="button">Check this project out!</a>
+        </div>
+        {% endfor %}
+    </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>

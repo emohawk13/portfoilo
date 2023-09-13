@@ -6,6 +6,7 @@ venv/
 
 __pycache__
 
+backups.txt
 workspace.txt
 projectConnection.py
 config.py
