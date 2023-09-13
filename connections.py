@@ -123,7 +123,7 @@ def get_test():
         return execute_query(allProjectDataQuery)
     
 
-if __name__ == "__main__":  # This ensures the code is only run if the script is executed directly
+if __name__ == "__main__":
     data = get_test()
     print(data)
 

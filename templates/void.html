@@ -24,11 +24,6 @@
         </div>
         <div class="side-menu" id="sideMenu">
             <ul>
-                {% for item in mainMenu_items %}
-                <li>
-                    <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
-                </li>
-                {% endfor %}
                 {% for link in socialMenu_items %}
                 <li>
                     <a href="{{ link.link }}" target="_blank" data-name="{{ link.name }}"
@@ -41,6 +36,11 @@
                 <li class="btn">
                     <button type="button" class="smButton" id="contactButton">Let's Connect!</button>
                 </li>
+                {% for item in mainMenu_items %}
+                <li class="btn">
+                    <a href="{{ url_for(item.toRoute)}}">{{ item.name }}</a>
+                </li>
+                {% endfor %}
             </ul>
     </nav>
     <section class="content-section">
@@ -82,5 +82,3 @@
 </body>
 
 </html>
-
-
