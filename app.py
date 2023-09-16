@@ -3,6 +3,7 @@ import config as config
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from connections import get_data, push_contact
 from projectData.CEIS412.math import *
+from projectData.CEIS412.Wk3math import *
 
 
 app = Flask(__name__)
@@ -14,12 +15,12 @@ app.config.from_pyfile('config.py')
 def check_route_status():
     path = request.path
     data = get_data()
-    keys_to_check = ['main', 'in_project', 'edu', 'in_edu', 'in_edu_project', 'in_personal_project', 'blog', 'work', 'in_work']
+    keys_to_check = ['main','edu','work']
     for key in keys_to_check:
         menu_items = data[key]['menu_items']
         for item in menu_items:
             if item.get("toRoute") == path and item.get("active", 0) == 0:
-                return redirect(url_for("underConstruction"))
+                return redirect(url_for("goHome"))
 
 @app.route('/')
 def home():
@@ -62,17 +63,14 @@ def projects():
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
     projectData = data['project']['allProjects']
-    eduProjectData = data['project']['eduProjects']
-    eduPast = data['project']['eduProjectsPast']
     
     return render_template('childTemplates/projects.html', mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items, 
-                            contact_form_fields=contact_form_fields, projectData=projectData, eduProjectData=eduProjectData,
-                            eduPast=eduPast)
+                            contact_form_fields=contact_form_fields, projectData=projectData)
 
 @app.route('/projectAdmin', methods=['GET', 'POST'])
 def projectAdmin():
     data = get_data()
-    mainMenu_items = data['blog']['menu_items']
+    mainMenu_items = data['main']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
 
@@ -99,7 +97,7 @@ def takenCourses():
     mainMenu_items = data['edu']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
-    courseData = data['in_edu_project']['course_data']
+    courseData = data['edu']['course_data']
     
     return render_template('childTemplates/takenCourses.html', courseData=courseData, mainMenu_items=mainMenu_items, socialMenu_items=socialMenu_items,
                             contact_form_fields=contact_form_fields)
@@ -107,7 +105,7 @@ def takenCourses():
 @app.route('/work', methods=['GET', 'POST'])
 def work():
     data = get_data()
-    mainMenu_items = data['in_work']['menu_items']
+    mainMenu_items = data['work']['menu_items']
     socialMenu_items = data['main']['social_menu_items']
     contact_form_fields = data['main']['contact_form_fields']
     work_data = data['work']['work']
@@ -158,6 +156,23 @@ def ceis420wk2(pattern_type, numRows):
         return jsonify(error="Invalid pattern type"), 400
     
     return jsonify(pattern=generate_pattern(pattern_function, numRows))
+
+@app.route('/ceis420wk3', methods=['GET', 'POST'])
+def ceis420wk3():
+    result = None
+
+    # Check if the request method is POST
+    if request.method == 'POST':
+        phone_num = request.form['phone_num']
+        is_valid = is_valid_phone_number(phone_num)
+
+        if is_valid:
+            result = 'Valid number'
+        else:
+            result = 'Not valid'
+
+    return render_template('projects/edu/CEIS420/week3.html', result=result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

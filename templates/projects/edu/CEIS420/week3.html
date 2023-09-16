@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Number Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Phone Number Checker</h1>
+        <form method="POST">
+            <label for="phone_num">Enter a phone number:</label>
+            <input type="text" id="phone_num" name="phone_num" maxlength="12" required>
+            <button type="submit">Check</button>
+            <button type="submit"><a href="{{ url_for('goHome') }}">Back to Dauhson's Portfolio</a></button>
+        </form>
+        {% if result %}
+        <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Get the phone number input element
+        var phoneNumberInput = document.getElementById("phone_num");
+
+        // Add an event listener to format the phone number as the user types
+        phoneNumberInput.addEventListener("input", function () {
+            // Remove any existing hyphens and non-digit characters
+            var cleanedInput = phoneNumberInput.value.replace(/[^0-9]/g, "");
+
+            // Check the length of the cleaned input
+            if (cleanedInput.length >= 3) {
+                // Insert a hyphen after the first 3 digits
+                cleanedInput = cleanedInput.slice(0, 3) + "-" + cleanedInput.slice(3);
+            }
+
+            if (cleanedInput.length >= 7) {
+                // Insert a hyphen after the second set of 3 digits
+                cleanedInput = cleanedInput.slice(0, 7) + "-" + cleanedInput.slice(7);
+            }
+
+            // Update the input field with the formatted phone number
+            phoneNumberInput.value = cleanedInput;
+        });
+    </script>
+</body>
+
+</html>

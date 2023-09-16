@@ -82,14 +82,15 @@ def get_data():
         "project": {
             "menu_items": get_menu_items(inProject),
             "allProjects": execute_query(allProjectDataQuery),
-            "eduProjects": execute_query(eduInProgress),
-            "eduProjectsPast": execute_query(eduProjectDataQuery)
         },
         "edu": {
             "menu_items": get_menu_items(inEdu),
             "eduProjects": execute_query(eduInProgress),
             "personalProjects": execute_query(personalProjectDataQuery),
-            "otherEduProjects": execute_query(otherEduProjectDataQuery)
+            "otherEduProjects": execute_query(otherEduProjectDataQuery),
+            "eduProjects": execute_query(eduInProgress),
+            "eduProjectsPast": execute_query(eduProjectDataQuery),
+            "course_data": execute_query(courseData),
         },
         "work": {
             "menu_items": get_menu_items(inWork),
@@ -101,7 +102,6 @@ def get_data():
     
 def get_test(): 
         return execute_query(allProjectDataQuery)
-    
 
 if __name__ == "__main__":
     data = get_test()
