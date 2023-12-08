@@ -165,6 +165,10 @@ body {
   font-size: 18px;
 }
 
+.subMainContent {
+  font-size: 38px;
+}
+
 /* Button Styles */
 .button {
   display: inline-block;

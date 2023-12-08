@@ -40,18 +40,35 @@ body, html {
   z-index: 1;
   
 }
-/*
-.content-section {
-  font-size: 1.5rem;
-  padding: 1rem;
-  width: 90%; /* Adjusted width 
-  margin-left: auto; /* Added margin-left auto 
-  margin-right: auto; /* Added margin-right auto 
-  background-color: #333;
-  color: white;
-  z-index: 4; /* Adjusted z-index 
+.button-list {
+  display: flex; /* Display the buttons horizontally */
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
 }
-*/
+
+.button-list ul {
+  display: flex; /* Ensure the list items are displayed horizontally */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.button-list li {
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+.button-list a {
+  text-decoration: none; /* Remove underline from links */
+  padding: 10px 20px; /* Add padding to the buttons */
+  background-color: #3498db; /* Change the button background color */
+  color: #fff; /* Change the button text color */
+  border-radius: 5px; /* Add rounded corners to the buttons */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.button-list a:hover {
+  background-color: #2980b9; /* Change the button background color on hover */
+}
+
 h2.title{
   font-size: 5rem;
   color: white;

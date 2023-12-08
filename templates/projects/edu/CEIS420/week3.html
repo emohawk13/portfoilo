@@ -82,26 +82,15 @@
     </div>
 
     <script>
-        // Get the phone number input element
         var phoneNumberInput = document.getElementById("phone_num");
-
-        // Add an event listener to format the phone number as the user types
         phoneNumberInput.addEventListener("input", function () {
-            // Remove any existing hyphens and non-digit characters
             var cleanedInput = phoneNumberInput.value.replace(/[^0-9]/g, "");
-
-            // Check the length of the cleaned input
             if (cleanedInput.length >= 3) {
-                // Insert a hyphen after the first 3 digits
                 cleanedInput = cleanedInput.slice(0, 3) + "-" + cleanedInput.slice(3);
             }
-
             if (cleanedInput.length >= 7) {
-                // Insert a hyphen after the second set of 3 digits
                 cleanedInput = cleanedInput.slice(0, 7) + "-" + cleanedInput.slice(7);
             }
-
-            // Update the input field with the formatted phone number
             phoneNumberInput.value = cleanedInput;
         });
     </script>

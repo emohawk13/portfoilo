@@ -8,7 +8,6 @@ from projectData.CEIS412.Wk3math import *
 
 app = Flask(__name__)
 
-
 app.config.from_pyfile('config.py')
 
 @app.before_request
@@ -160,8 +159,6 @@ def ceis420wk2(pattern_type, numRows):
 @app.route('/ceis420wk3', methods=['GET', 'POST'])
 def ceis420wk3():
     result = None
-
-    # Check if the request method is POST
     if request.method == 'POST':
         phone_num = request.form['phone_num']
         is_valid = is_valid_phone_number(phone_num)

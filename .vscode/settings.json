@@ -4,9 +4,21 @@
     },
     "python.formatting.provider": "none",
     "cSpell.words": [
+        "backref",
+        "CEIS",
         "cursorclass",
         "devry",
         "gifs",
-        "jsonify"
+        "jsonify",
+        "pymysql",
+        "sessionmaker",
+        "showtimes",
+        "sqlalchemy",
+        "subproject",
+        "subprojects",
+        "Theat"
+    ],
+    "cSpell.ignoreWords": [
+        "portfoilo"
     ]
 }
